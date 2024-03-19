@@ -11,7 +11,7 @@ import {
 import ok from '../assets/icons/ok.png';
 import { SCREEN_HEIGHT } from '../constants';
 
-export const SuccessfulSupport = () => {
+export const SuccessfulMessage = () => {
   const [value, setValue] = useState('');
   return (
     <View style={styles.container}>

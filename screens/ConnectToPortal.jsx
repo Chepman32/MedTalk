@@ -1,22 +1,52 @@
 
 /* eslint-disable quotes */
 import React, { useState } from 'react';
-import {SafeAreaView, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { ConnectToPortalItem } from '../components/ConnectToPortalItem';
 import { ConnectToPortalInputs } from '../components/ConnectToPortalInputs';
+import { SuccessfulMessage } from '../components/SuccessfulMessage';
 
 export const ConnectToPortal = () => {
   const [selected, setSelected] = useState("")
+  const [showInputs, setShowInputs] = useState(false)
   const [completed, setCompleted] = useState(false)
+  const [success, setSuccess] = useState(false)
+
+  if (success) {
+    return (
+      <SuccessfulMessage/>
+    )
+  }
 
   return (
     <SafeAreaView style={styles.container}>
           <Text style={styles.mainText}>
           Выберите подходящее из списка:
       </Text>
-      <ConnectToPortalInputs/>
-          <TouchableOpacity style={selected || completed ? styles.button : {...styles.button, ...styles.disabledButton}} onPress={setCompleted(true)} >
+      <ConnectToPortalInputs visible={showInputs} setCompleted={setCompleted}/>
+      {
+        !showInputs &&
+        <View>
+            <ConnectToPortalItem text={"Аптека"} selected={selected} setSelected={setSelected} />
+          <ConnectToPortalItem text={"Выезд на дом"} selected={selected} setSelected={setSelected} />
+          <ConnectToPortalItem text={"Медицинский центр"} selected={selected} setSelected={setSelected} />
+          <ConnectToPortalItem text={"Лаборатория"} selected={selected} setSelected={setSelected} />
+          <ConnectToPortalItem text={"Стоматология"} selected={selected} setSelected={setSelected} />
+          <ConnectToPortalItem text={"Ветеринарная клиника"} selected={selected} setSelected={setSelected} />
+          <ConnectToPortalItem text={"Медицинское страхование"} selected={selected} setSelected={setSelected} />
+          <ConnectToPortalItem text={"Торгующая компания"} selected={selected} setSelected={setSelected} />
+          <ConnectToPortalItem text={"Сервис и ремонт"} selected={selected} setSelected={setSelected} />
+        </View>
+      }
+      <TouchableOpacity style={!showInputs && selected || showInputs && completed ? styles.button : { ...styles.button, ...styles.disabledButton }} onPress={() => {
+        if (showInputs && completed) {
+          setSuccess(true)
+        }
+        if(!showInputs && selected) {
+          setShowInputs(true)
+        }
+          }} >
             <Text style={styles.buttonText}>Отправить</Text>
           </TouchableOpacity>
     </SafeAreaView>
@@ -42,7 +72,7 @@ const styles = StyleSheet.create({
         width: SCREEN_WIDTH * 0.95,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: SCREEN_HEIGHT * 0.009,
+        paddingVertical: SCREEN_HEIGHT * 0.015,
         backgroundColor: 'rgba(0, 137, 100, 1)',
         borderRadius: 8,
     },

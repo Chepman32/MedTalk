@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {SuccessfulSupport} from '../components/SuccessfulSupport';
+import {SuccessfulMessage } from '../components/SuccessfulMessage';
 import { SCREEN_WIDTH } from '../constants';
 
 export const Support = () => {
@@ -16,7 +16,7 @@ export const Support = () => {
   return (
     <SafeAreaView style={styles.container}>
       {sent ? (
-        <SuccessfulSupport />
+        <SuccessfulMessage />
       ) : (
         <View>
           <Text style={styles.mainText}>
