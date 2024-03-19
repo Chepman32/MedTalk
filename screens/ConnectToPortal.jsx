@@ -4,24 +4,19 @@ import React, { useState } from 'react';
 import {SafeAreaView, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { ConnectToPortalItem } from '../components/ConnectToPortalItem';
+import { ConnectToPortalInputs } from '../components/ConnectToPortalInputs';
 
 export const ConnectToPortal = () => {
-    const [selected, setSelected] = useState("")
+  const [selected, setSelected] = useState("")
+  const [completed, setCompleted] = useState(false)
+
   return (
     <SafeAreaView style={styles.container}>
           <Text style={styles.mainText}>
           Выберите подходящее из списка:
-          </Text>
-          <ConnectToPortalItem text={"Аптека"} selected={selected} setSelected={setSelected} />
-          <ConnectToPortalItem text={"Выезд на дом"} selected={selected} setSelected={setSelected} />
-          <ConnectToPortalItem text={"Медицинский центр"} selected={selected} setSelected={setSelected} />
-          <ConnectToPortalItem text={"Лаборатория"} selected={selected} setSelected={setSelected} />
-          <ConnectToPortalItem text={"Стоматология"} selected={selected} setSelected={setSelected} />
-          <ConnectToPortalItem text={"Ветеринарная клиника"} selected={selected} setSelected={setSelected} />
-          <ConnectToPortalItem text={"Медицинское страхование"} selected={selected} setSelected={setSelected} />
-          <ConnectToPortalItem text={"Торгующая компания"} selected={selected} setSelected={setSelected} />
-          <ConnectToPortalItem text={"Сервис и ремонт"} selected={selected} setSelected={setSelected} />
-          <TouchableOpacity style={selected ? styles.button : {...styles.button, ...styles.disabledButton}} >
+      </Text>
+      <ConnectToPortalInputs/>
+          <TouchableOpacity style={selected || completed ? styles.button : {...styles.button, ...styles.disabledButton}} onPress={setCompleted(true)} >
             <Text style={styles.buttonText}>Отправить</Text>
           </TouchableOpacity>
     </SafeAreaView>
