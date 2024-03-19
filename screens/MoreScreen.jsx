@@ -1,12 +1,15 @@
-/* eslint-disable prettier/prettier */
+
 /* eslint-disable quotes */
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { MoreScreenItem } from '../components/MoreScreenItem';
-import about from "../assets/icons/about.png"
-import franchise from "../assets/icons/franchise.png"
-import socials from "../assets/icons/socials.png"
+import about from "../assets/icons/about.png";
+import franchise from "../assets/icons/franchise.png";
+import socials from "../assets/icons/socials.png";
+import support from "../assets/icons/support.png";
+import agreement from "../assets/icons/agreement.png";
+import privacy from "../assets/icons/privacy.png";
 
 export const MoreScreen = () => {
   return (
@@ -14,6 +17,9 @@ export const MoreScreen = () => {
           <MoreScreenItem text={"O нас"} icon={about} path={"About"} />
       <MoreScreenItem text={"Франчайзинг"} icon={franchise} path={"Franchise"} />
       <MoreScreenItem text={"Мы в социальных сетях"} icon={socials} path={"Socials"} />
+      <MoreScreenItem text={"Служба поддержки"} icon={support} path={"Support"} />
+      <MoreScreenItem text={"Пользовательское соглашение"} icon={agreement} path={"UserAgreement"} />
+      <MoreScreenItem text={"Политика конфиденциальности"} icon={privacy} path={"PrivacyPolicy"} />
     </SafeAreaView>
   );
 };

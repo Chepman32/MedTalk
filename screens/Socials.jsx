@@ -29,16 +29,4 @@ const styles = StyleSheet.create({
     paddingVertical: SCREEN_HEIGHT * 0.05,
         paddingHorizontal: SCREEN_WIDTH * 0.025,
   },
-  mainText: {
-    fontWeight: '400',
-    fontSize: 12,
-    lineHeight: 15,
-    color: 'rgba(21, 21, 21, 1)',
-    },
-    boldText: {
-        marginVertical: 10,
-        fontSize: 12,
-        fontWeight: "600",
-        lineHeight: 16,
-  },
 });
