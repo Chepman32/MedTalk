@@ -2,23 +2,28 @@
 /* eslint-disable quotes */
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import { SCREEN_WIDTH } from './constants';
-import { MoreScreenItem } from './MoreScreenItem';
-import about from "./assets/icons/about.png"
-import franchise from "./assets/icons/franchise.png"
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
+import { MoreScreenItem } from '../components/MoreScreenItem';
+import about from "../assets/icons/about.png"
+import franchise from "../assets/icons/franchise.png"
+import socials from "../assets/icons/socials.png"
 
 export const MoreScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
           <MoreScreenItem text={"O нас"} icon={about} path={"About"} />
-          <MoreScreenItem text={"Франчайзинг"} icon={franchise} path={"Franchise"} />
+      <MoreScreenItem text={"Франчайзинг"} icon={franchise} path={"Franchise"} />
+      <MoreScreenItem text={"Мы в социальных сетях"} icon={socials} path={"Socials"} />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-        flex: 1,
+    width: "100%",
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: SCREEN_HEIGHT * 0.05,
       paddingHorizontal: SCREEN_WIDTH * 0.025,
   },
   mainText: {

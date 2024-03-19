@@ -2,10 +2,10 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {SCREEN_HEIGHT, SCREEN_WIDTH} from './constants';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../constants';
 import { useNavigation } from '@react-navigation/native';
 
-export const MoreScreenItem = ({ text, icon, path }) => {
+export const SocialsItem = ({ text, icon, path }) => {
     const navigation = useNavigation()
   return (
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate(path)} >
@@ -17,20 +17,17 @@ export const MoreScreenItem = ({ text, icon, path }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT * 0.04,
+    width: SCREEN_WIDTH * 0.95,
+    height: SCREEN_HEIGHT * 0.06,
     flexDirection: 'row',
-    alignItems: 'center', // Corrected: This property should be applied to the container style
+    alignItems: 'center',
     padding: SCREEN_WIDTH * 0.01,
     marginBottom: 15,
     backgroundColor: 'rgba(255, 255, 255, 1)',
     overflow: 'hidden',
     borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
+        borderWidth: 1,
+    borderColor: "rgba(219, 219, 219, 1)",
     shadowOpacity: 0.05,
     shadowRadius: 16,
     elevation: 6,

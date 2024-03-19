@@ -2,7 +2,7 @@
 /* eslint-disable quotes */
 import React from 'react';
 import {View, SafeAreaView, Text, StyleSheet, ScrollView} from 'react-native';
-import { SCREEN_WIDTH } from './constants';
+import { SCREEN_WIDTH } from '../constants';
 
 export const About = () => {
   return (

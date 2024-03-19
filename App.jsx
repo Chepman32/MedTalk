@@ -6,10 +6,11 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import {About} from './About';
+import {About} from './screens/About';
 import { Image } from 'react-native';
-import { MoreScreen } from './MoreScreen';
-import { Franchise } from './Franchise';
+import { MoreScreen } from './screens/MoreScreen';
+import { Franchise } from './screens/Franchise';
+import { Socials } from './screens/Socials';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,7 +27,24 @@ function StackNavigator() {
       <Stack.Screen name="Franchise" component={Franchise} options={{
         title: "Франчайзинг"
       }} />
-      <Stack.Screen name="Screen4" component={About} />
+      <Stack.Screen name="Socials" component={Socials} options={{headerShown: false}} />
+    </Stack.Navigator>
+  );
+}
+
+function MoreStackNavigator() {
+  return (
+    <Stack.Navigator screenOptions={{
+      headerBackTitleVisible: false
+    }} >
+      <Stack.Screen name="Screen1" component={MoreScreen} options={{headerShown: false}} />
+      <Stack.Screen name="About" component={About} options={{
+        title: "Screen1"
+      }} />
+      <Stack.Screen name="Franchise" component={Franchise} options={{
+        title: "Франчайзинг"
+      }} />
+      <Stack.Screen name="Socials" component={Socials} options={{headerShown: false}} />
     </Stack.Navigator>
   );
 }
@@ -51,7 +69,7 @@ export default function App() {
       <Image width={20} height={20} source={require('./assets/icons/shop.png')}/>
     ),
   }}/>
-        <Tab.Screen name="Другое" component={StackNavigator} options={{
+        <Tab.Screen name="Другое" component={MoreStackNavigator} options={{
     tabBarIcon: ({  }) => (
       <Image width={20} height={20} source={require('./assets/icons/more.png')}/>
     ),
