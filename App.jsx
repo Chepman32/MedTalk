@@ -10,6 +10,7 @@ import { Socials } from './screens/Socials';
 import { Support } from './screens/Support';
 import { UserAgreement } from './screens/UserAgreement';
 import { PrivacyPolicy } from './screens/PrivacyPolicy';
+import { ConnectToPortal } from './screens/ConnectToPortal';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,18 +24,13 @@ function MoreStackNavigator() {
       headerShown: route.name !== 'Другое', // Show header only if the route name is not 'Другое'
     })}>
       <Stack.Screen name="MoreScreen" component={MoreScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="About" component={About} options={{
-        title: 'о нас',
-      }} />
-      <Stack.Screen name="UserAgreement" component={UserAgreement} options={{
-        title: 'Пользовательское соглашение',
-      }} />
-      <Stack.Screen name="Franchise" component={Franchise} options={{
-        title: 'Франчайзинг',
-      }} />
+      <Stack.Screen name="About" component={About} options={{ title: 'о нас' }} />
+      <Stack.Screen name="UserAgreement" component={UserAgreement} options={{ title: 'Пользовательское соглашение' }} />
+      <Stack.Screen name="Franchise" component={Franchise} options={{ title: 'Франчайзинг' }} />
       <Stack.Screen name="Socials" component={Socials} options={{ headerShown: false }} />
-      <Stack.Screen name="Support" component={Support} options={{ title: 'Служба поддержки', }} />
+      <Stack.Screen name="Support" component={Support} options={{ title: 'Служба поддержки' }} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Политика конфиденциальности', }} />
+      <Stack.Screen name="ConnectToPortal" component={ConnectToPortal} options={{ title: 'Подключиться к порталу' }} />
     </Stack.Navigator>
   );
 }

@@ -10,6 +10,7 @@ import socials from "../assets/icons/socials.png";
 import support from "../assets/icons/support.png";
 import agreement from "../assets/icons/agreement.png";
 import privacy from "../assets/icons/privacy.png";
+import connect from "../assets/icons/connect.png";
 
 export const MoreScreen = () => {
   return (
@@ -20,6 +21,7 @@ export const MoreScreen = () => {
       <MoreScreenItem text={"Служба поддержки"} icon={support} path={"Support"} />
       <MoreScreenItem text={"Пользовательское соглашение"} icon={agreement} path={"UserAgreement"} />
       <MoreScreenItem text={"Политика конфиденциальности"} icon={privacy} path={"PrivacyPolicy"} />
+      <MoreScreenItem text={"Подключиться к порталу"} icon={connect} path={"ConnectToPortal"} />
     </SafeAreaView>
   );
 };
