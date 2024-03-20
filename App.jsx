@@ -11,6 +11,7 @@ import { Support } from './screens/Support';
 import { UserAgreement } from './screens/UserAgreement';
 import { PrivacyPolicy } from './screens/PrivacyPolicy';
 import { ConnectToPortal } from './screens/ConnectToPortal';
+import { Favorite } from './screens/Favorite';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,6 +36,26 @@ function MoreStackNavigator() {
   );
 }
 
+function FavoriteStackNavigator() {
+  return (
+    <Stack.Navigator initialRouteName="MoreScreen" screenOptions={({ route }) => ({
+      headerBackTitleVisible: false,
+      headerTintColor: '#000',
+      headerBackVisible: true,
+      headerShown: route.name !== 'Другое',
+    })}>
+      <Stack.Screen name="Favorite" component={Favorite} options={{ headerShown: false }} />
+      <Stack.Screen name="About" component={About} options={{ title: 'о нас' }} />
+      <Stack.Screen name="UserAgreement" component={UserAgreement} options={{ title: 'Пользовательское соглашение' }} />
+      <Stack.Screen name="Franchise" component={Franchise} options={{ title: 'Франчайзинг' }} />
+      <Stack.Screen name="Socials" component={Socials} options={{ headerShown: false }} />
+      <Stack.Screen name="Support" component={Support} options={{ title: 'Служба поддержки' }} />
+      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Политика конфиденциальности', }} />
+      <Stack.Screen name="ConnectToPortal" component={ConnectToPortal} options={{ title: 'Подключиться к порталу' }} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -45,7 +66,7 @@ export default function App() {
           ),
           tabBarActiveTintColor: 'green',
         }} />
-        <Tab.Screen name="Избранное" component={MoreStackNavigator} options={{
+        <Tab.Screen name="Избранное" component={FavoriteStackNavigator} options={{
           tabBarIcon: ({ }) => (
             <Image width={20} height={20} source={require('./assets/icons/favorite.png')} />
           ),
