@@ -1,20 +1,24 @@
 /* eslint-disable quotes */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../constants';
-import { useNavigation } from '@react-navigation/native';
-import MockImage from "../assets/images/Rectangle_330.png";
 import Fav from "../assets/icons/Frame_658375.png";
+import NotFav from "../assets/icons/favorite.png";
 
-export const FavoriteItem = ({ text, type, path }) => {
-    const navigation = useNavigation();
-  return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate(path)} >
-          <View style={styles.content} >
-          <Image style={styles.image} source={MockImage} />
-              <Text style={styles.boldText}>{text}</Text>
-              <Image style={styles.icon} source={Fav} />
+export const FavoriteItem = ({ text, icon, type, isFavorite }) => {
+    const [favorite, setFavorite] = useState(isFavorite)
+
+    return (
+    <TouchableOpacity style={styles.container} >
+          <View style={styles.row} >
+          <Image style={styles.image} source={icon} />
+                <View style={styles.content} >
+                <Text style={styles.boldText}>{text}</Text>
+                <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+                <Image style={styles.icon} source={favorite ? Fav : NotFav} />
+              </TouchableOpacity>
+          </View>
           </View>
           <Text style={styles.text}>{type}</Text>
     </TouchableOpacity>
@@ -37,16 +41,20 @@ const styles = StyleSheet.create({
     elevation: 6,
     },
     content: {
+        flex: 1,
         flexDirection: "row",
         justifyContent: "space-between"
     },
+    row: {
+        flexDirection: "row",
+    },
   image: {
-    width: 64,
-    height: 64,
+    width: SCREEN_WIDTH * 0.2,
+    height: SCREEN_WIDTH * 0.2,
     marginRight: SCREEN_WIDTH * 0.01,
   },
     text: {
-      marginTop: SCREEN_HEIGHT * 0.01,
+        maxWidth: SCREEN_WIDTH * 0.8,
     fontWeight: '400',
     fontSize: 12,
     lineHeight: 15,
@@ -56,9 +64,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     fontSize: 12,
     fontWeight: '800',
-      lineHeight: 18,
+    lineHeight: 18,
     color: "rgba(0, 137, 100, 1)",
-    },
+    width: SCREEN_WIDTH * 0.6, // Set a fixed width
+  },
     icon: {
         width: 20,
         height: 20,
