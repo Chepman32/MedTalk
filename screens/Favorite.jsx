@@ -3,14 +3,16 @@ import React, { useState } from 'react';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { FavoriteItem } from './FavoriteItem';
 import search from '../assets/icons/search.png';
-import MockImage from '../assets/images/Rectangle_330.png';
+import MockImage1 from '../assets/images/Rectangle_330.png';
 import MockImage2 from '../assets/images/Rectangle_329.png';
 import MockImage3 from '../assets/images/Rectangle_472.png';
+import MockImage4 from '../assets/images/image_150.png';
+import noFavorites from '../assets/icons/noFavorites.png';
 
 const data = [
     {
         text: 'Специальное техническое обслуживание'
-        , icon: MockImage,
+        , icon: MockImage1,
         type: 'Медицинское оборудование / Сервис и ремонт',
         isFavorite: true,
     },
@@ -26,45 +28,72 @@ const data = [
         type: 'Медицинское оборудование / Медицинская мебель',
         isFavorite: true,
     },
+    {
+        text: 'Соловьев Александр Викторович'
+        , icon: MockImage4,
+        type: '',
+        isFavorite: true,
+    },
 ];
 
 export const Favorite = () => {
     const [searchValue, setSearchValue] = useState('');
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.inputContainer}>
-        <Image source={search} style={styles.icon} />
-        <TextInput
-          value={searchValue}
-          onChangeText={setSearchValue}
-          style={styles.input}
-          placeholder="Поиск"
-          textAlignVertical="top"
-        />
-      </View>
-      <ScrollView>
-              {
-                  data.map((d) => <FavoriteItem text={d.text} icon={d.icon} type={d.type} isFavorite={d.isFavorite} />)
-        }
-      </ScrollView>
-    </SafeAreaView>
-  );
+
+    const filteredData = data.filter(item => item.text.toLowerCase().includes(searchValue.toLowerCase()));
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <View style={styles.inputContainer}>
+                <Image source={search} style={styles.icon} />
+                <TextInput
+                    value={searchValue}
+                    onChangeText={setSearchValue}
+                    style={styles.input}
+                    placeholder="Поиск"
+                    textAlignVertical="top"
+                />
+            </View>
+            <ScrollView >
+                <View style={styles.main} >
+                {
+                    data.length ? filteredData.map((d, index) => <FavoriteItem key={d.text + index} text={d.text} icon={d.icon} type={d?.type} isFavorite={d.isFavorite} />)
+                            : <View style={styles.main}>
+                                <Image style={styles.image} source={noFavorites} />
+                                <Text style={styles.mainText}>
+                                Вы пока ничего не добавили в избранное.
+                                </Text>
+                        </View>
+                }
+            </View>
+            </ScrollView>
+        </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    flex: 1,
+    width: SCREEN_WIDTH,
+        flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: SCREEN_HEIGHT * 0.05,
-    paddingHorizontal: SCREEN_WIDTH * 0.025,
-  },
+    },
+    main: {
+        width: SCREEN_WIDTH,
+        display: 'flex',
+        flexDirection: 'column',
+    justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
   mainText: {
-    marginBottom: SCREEN_HEIGHT * 0.01,
+      marginTop: SCREEN_HEIGHT * 0.03,
+      paddingBottom: SCREEN_HEIGHT * 0.035,
+      textAlign: 'center',
     fontWeight: '400',
-    fontSize: 12,
-    lineHeight: 15,
-    color: 'rgba(21, 21, 21, 1)',
+    fontSize: 14,
+    lineHeight: 18,
+    color: 'rgba(136, 136, 136, 1)',
   },
   inputContainer: {
     flexDirection: 'row',
@@ -81,5 +110,10 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     paddingLeft: SCREEN_WIDTH * 0.02,
-  },
+    },
+    image: {
+        width: SCREEN_WIDTH * 0.2,
+        height: SCREEN_WIDTH * 0.2,
+        marginTop: SCREEN_WIDTH * 0.07,
+      },
 });

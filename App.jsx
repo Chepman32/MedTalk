@@ -12,6 +12,7 @@ import { UserAgreement } from './screens/UserAgreement';
 import { PrivacyPolicy } from './screens/PrivacyPolicy';
 import { ConnectToPortal } from './screens/ConnectToPortal';
 import { Favorite } from './screens/Favorite';
+import { Cart } from './screens/Cart';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -71,7 +72,7 @@ export default function App() {
             <Image width={20} height={20} source={require('./assets/icons/favorite.png')} />
           ),
         }} />
-        <Tab.Screen name="Корзина" component={MoreStackNavigator} options={{
+        <Tab.Screen name="Корзина" component={Cart} options={{
           tabBarIcon: ({ color, size }) => (
             <Image width={20} height={20} source={require('./assets/icons/shop.png')} />
           ),
