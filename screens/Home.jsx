@@ -60,12 +60,20 @@ const styles = StyleSheet.create({
     head: {
         width: SCREEN_WIDTH,
         flexDirection: 'row',
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: 'center',
-        paddingRight: SCREEN_WIDTH * 0.07,
-        paddingLeft: SCREEN_WIDTH * 0.04,
-        backgroundColor: '#fff',
-    },
+        paddingRight: 32, // Changed from paddingHorizontal to paddingRight
+        paddingLeft: 16,
+        backgroundColor: '#FFFFFF',
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 3,
+      },
     headIcon: {
         width: SCREEN_WIDTH * 0.1,
         height: SCREEN_WIDTH * 0.1,
@@ -73,12 +81,12 @@ const styles = StyleSheet.create({
       inputContainer: {
         flexDirection: 'row',
           alignItems: 'center',
-        marginHorizontal: 30,
         backgroundColor: 'rgba(245, 245, 245, 1)',
         borderRadius: 8,
-        width: SCREEN_WIDTH * 0.57,
+        width: SCREEN_WIDTH * 0.6,
         height: SCREEN_HEIGHT * 0.038,
-        marginVertical: SCREEN_HEIGHT * 0.005,
+          marginVertical: SCREEN_HEIGHT * 0.005,
+          paddingRight: 40,
       },
       icon: {
         marginLeft: SCREEN_WIDTH * 0.02,
