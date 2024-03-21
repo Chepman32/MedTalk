@@ -13,6 +13,7 @@ import { PrivacyPolicy } from './screens/PrivacyPolicy';
 import { ConnectToPortal } from './screens/ConnectToPortal';
 import { Favorite } from './screens/Favorite';
 import { Cart } from './screens/Cart';
+import { Home } from './screens/Home';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -61,7 +62,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Главная" component={MoreStackNavigator} options={{
+        <Tab.Screen name="Главная" component={Home} options={{
           tabBarIcon: ({ color, size }) => (
             <Image width={20} height={20} source={require('./assets/icons/home-page.png')} />
           ),
