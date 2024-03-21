@@ -16,9 +16,15 @@ import tools from '../assets/icons/Home_icons/Frame658355.png';
 import ads from '../assets/icons/Home_icons/Frame658356.png';
 import facilities from '../assets/icons/Home_icons/Frame658350.png';
 import insurance from '../assets/icons/Home_icons/Frame658354.png';
+import { AuthWarningModal } from '../components/AuthWarningModal';
 
 export const Home = () => {
     const [searchValue, setSearchValue] = useState('');
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(true);
+      };
   return (
       <View style={styles.container}>
           <View style={styles.head}>
@@ -37,7 +43,7 @@ export const Home = () => {
           </View>
           <Image style={styles.banner} source={banner} resizeMode="contain"/>
       <View style={styles.buttons}>
-              <Homeitem text={'Медикаменты и аптеки'} icon={drugs} />
+              <Homeitem text={'Медикаменты и аптеки'} icon={drugs} onPress={toggleModal} />
               <Homeitem text={'Врачи'} icon={doctor} />
               <Homeitem text={'Выезд на дом и Онлайн консультация'} icon={car} />
               <Homeitem text={'Лаборатории'} icon={labs} />
@@ -47,7 +53,8 @@ export const Home = () => {
               <Homeitem text={'Частные объявления'} icon={ads} />
               <Homeitem text={'Медицинское учреждение'} icon={facilities} />
               <Homeitem text={'Медицинское страхование'} icon={insurance}/>
-      </View>
+          </View>
+          <AuthWarningModal isModalVisible={isModalVisible} setModalVisible={setModalVisible} hide={() => setModalVisible(false)} />
     </View>
   );
 };

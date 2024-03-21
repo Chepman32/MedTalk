@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 
-export const Homeitem = ({text, icon}) => {
+export const Homeitem = ({text, icon, onPress}) => {
   return (
-    <TouchableOpacity style={styles.buttonContainer}>
+    <TouchableOpacity style={styles.buttonContainer} onPress={onPress} >
                   <View style={{ alignItems: "flex-start" }}>
                   <Text style={styles.buttonText}>{text} </Text>
               </View>

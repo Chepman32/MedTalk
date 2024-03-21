@@ -1,18 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Image,
-  SafeAreaView,
   StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import ok from '../assets/icons/ok.png';
 import { SCREEN_HEIGHT } from '../constants';
 
 export const SuccessfulMessage = () => {
-  const [value, setValue] = useState('');
+  
   return (
     <View style={styles.container}>
           <Image width={25} height={25} source={ok} />
