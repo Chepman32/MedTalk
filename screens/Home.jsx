@@ -45,14 +45,14 @@ export const Home = () => {
       <View style={styles.buttons}>
               <Homeitem text={'Медикаменты и аптеки'} icon={drugs} onPress={toggleModal} />
               <Homeitem text={'Врачи'} icon={doctor} />
-              <Homeitem text={'Выезд на дом и Онлайн консультация'} icon={car} />
-              <Homeitem text={'Лаборатории'} icon={labs} />
-              <Homeitem text={'Стоматологии'} icon={dentist} />
-              <Homeitem text={'Ветеринарные клиники'} icon={pets} />
-              <Homeitem text={'Медицинское оборудование'} icon={tools} />
-              <Homeitem text={'Частные объявления'} icon={ads} />
-              <Homeitem text={'Медицинское учреждение'} icon={facilities} />
-              <Homeitem text={'Медицинское страхование'} icon={insurance}/>
+              <Homeitem text={'Выезд на дом и Онлайн консультация'} icon={car} onPress={toggleModal} />
+              <Homeitem text={'Лаборатории'} icon={labs} onPress={toggleModal} />
+              <Homeitem text={'Стоматологии'} icon={dentist}  onPress={toggleModal}/>
+              <Homeitem text={'Ветеринарные клиники'} icon={pets} onPress={toggleModal} />
+              <Homeitem text={'Медицинское оборудование'} icon={tools } onPress={toggleModal} />
+              <Homeitem text={'Частные объявления'} icon={ads} onPress={toggleModal} />
+              <Homeitem text={'Медицинское учреждение'} icon={facilities} onPress={toggleModal} />
+              <Homeitem text={'Медицинское страхование'} icon={insurance} onPress={toggleModal}/>
           </View>
           <AuthWarningModal isModalVisible={isModalVisible} setModalVisible={setModalVisible} hide={() => setModalVisible(false)} />
     </View>

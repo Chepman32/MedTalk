@@ -14,9 +14,26 @@ import { ConnectToPortal } from './screens/ConnectToPortal';
 import { Favorite } from './screens/Favorite';
 import { Cart } from './screens/Cart';
 import { Home } from './screens/Home';
+import { SignIn } from './screens/SignIn';
+import { SignUp } from './screens/SignUp';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+function HomeStackNavigator() {
+  return (
+    <Stack.Navigator initialRouteName="Home" screenOptions={({ route }) => ({
+      headerBackTitleVisible: false,
+      headerTintColor: '#000', // Set back button color to black
+      headerBackVisible: true, // Make back button visible
+      headerShown: route.name !== 'Другое', // Show header only if the route name is not 'Другое'
+    })}>
+      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Stack.Screen name="SignIn" component={SignIn} options={{ title: 'Войти', headerLeft: null }} />
+      <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'Регистрация' }} />
+    </Stack.Navigator>
+  );
+}
 
 function MoreStackNavigator() {
   return (
@@ -47,13 +64,6 @@ function FavoriteStackNavigator() {
       headerShown: route.name !== 'Другое',
     })}>
       <Stack.Screen name="Favorite" component={Favorite} options={{ headerShown: false }} />
-      <Stack.Screen name="About" component={About} options={{ title: 'о нас' }} />
-      <Stack.Screen name="UserAgreement" component={UserAgreement} options={{ title: 'Пользовательское соглашение' }} />
-      <Stack.Screen name="Franchise" component={Franchise} options={{ title: 'Франчайзинг' }} />
-      <Stack.Screen name="Socials" component={Socials} options={{ headerShown: false }} />
-      <Stack.Screen name="Support" component={Support} options={{ title: 'Служба поддержки' }} />
-      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Политика конфиденциальности', }} />
-      <Stack.Screen name="ConnectToPortal" component={ConnectToPortal} options={{ title: 'Подключиться к порталу' }} />
     </Stack.Navigator>
   );
 }
@@ -62,7 +72,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Главная" component={Home} options={{
+        <Tab.Screen name="Главная" component={HomeStackNavigator} options={{
           tabBarIcon: ({ color, size }) => (
             <Image width={20} height={20} source={require('./assets/icons/home-page.png')} />
           ),

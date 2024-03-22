@@ -4,8 +4,10 @@ import Modal from 'react-native-modal';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import attention from '../assets/icons/attention.png';
 import close from '../assets/icons/close.png';
+import { useNavigation } from '@react-navigation/native';
 
 export const AuthWarningModal = ({ isModalVisible, setModalVisible, hide }) => {
+  const navigation = useNavigation()
   return (
     <Modal 
       isVisible={isModalVisible} 
@@ -22,8 +24,11 @@ export const AuthWarningModal = ({ isModalVisible, setModalVisible, hide }) => {
         <Text style={styles.title}>Внимание!</Text>
         <Text style={styles.mainText}>Услуга “Выезд на дом” доступна только для авторизованных пользователей.</Text>
         <Text style={styles.mainText}>Пожалуйста авторизуйтесь</Text>
-        <TouchableOpacity style={styles.button} onPress={hide}>
-          <Text style={styles.buttonText}>Отправить</Text>
+        <TouchableOpacity style={styles.button} onPress={() => {
+          hide()
+          navigation.navigate("SignIn")
+        }}>
+          <Text style={styles.buttonText}>Войти</Text>
         </TouchableOpacity>
       </View>
     </Modal>
