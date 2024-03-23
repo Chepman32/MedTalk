@@ -16,19 +16,24 @@ import { Cart } from './screens/Cart';
 import { Home } from './screens/Home';
 import { SignIn } from './screens/SignIn';
 import { SignUp } from './screens/SignUp';
+import { PasswordRecover } from './screens/PasswordRecover';
+import { ChangePassword } from './screens/ChangePassword';
+import { PasswordSuccessfulChanged } from './screens/PasswordSuccessfulChanged';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function HomeStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={({ route }) => ({
+    <Stack.Navigator initialRouteName="PasswordSuccessfulChanged" screenOptions={({ route }) => ({
       headerBackTitleVisible: false,
       headerTintColor: '#000', // Set back button color to black
       headerBackVisible: true, // Make back button visible
       headerShown: route.name !== 'Другое', // Show header only if the route name is not 'Другое'
     })}>
-      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Stack.Screen name="PasswordRecover" component={PasswordRecover} options={{ title: 'Восстановление пароля' }} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} options={{ title: 'Смена пароля', headerLeft: null }} />
+      <Stack.Screen name="PasswordSuccessfulChanged" component={PasswordSuccessfulChanged} options={{ title: 'Восстановление пароля' }} />
       <Stack.Screen name="SignIn" component={SignIn} options={{ title: 'Войти', headerLeft: null }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'Регистрация' }} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Политика конфиденциальности', }} />
