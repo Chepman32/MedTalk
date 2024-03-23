@@ -23,7 +23,7 @@ export const ChangePassword = () => {
       <View style={{ width: SCREEN_WIDTH * 0.95, alignItems: "flex-start"}} >
       <Text style={styles.greyText}>Введите код подтверждения</Text>
       </View>
-          <ConfirmButton text={"Отправить"} />
+          <ConfirmButton text={"Отправить"} onPress={() => navigation.navigate("PasswordSuccessfulChanged")} />
     </SafeAreaView>
     </ScrollView>
   );

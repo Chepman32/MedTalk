@@ -28,7 +28,7 @@ export const PasswordRecover = () => {
       <Text style={styles.greyText}>Введите код подтверждения</Text>
       </View>
       <SMSverification/>
-          <ConfirmButton text={"Отправить"} />
+          <ConfirmButton text={"Отправить"} onPress={() => navigation.navigate("ChangePassword")} />
           <CancelButton text={"Назад"} onPress={() => navigation.goBack()}/>
     </SafeAreaView>
     </ScrollView>

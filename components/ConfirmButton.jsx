@@ -5,7 +5,7 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 export const ConfirmButton = ({text, onPress}) => {
 
   return (
-    <TouchableOpacity style={styles.button} >
+    <TouchableOpacity style={styles.button} onPress={onPress} >
             <Text style={styles.buttonText}>{text} </Text>
       </TouchableOpacity>
   );

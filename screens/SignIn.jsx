@@ -17,7 +17,9 @@ export const SignIn = () => {
           <InputContainer text="Контактный номер" value={phone} setValue={setPhone} isRequired/>
       <InputContainer text="Пароль" value={password} setValue={setassword} isRequired/>
       <View style={{ width: SCREEN_WIDTH * 0.95, alignItems: "flex-end"}} >
-      <Text style={styles.greenText}>Забыли пароль?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("PasswordRecover")}>
+        <Text style={styles.greenText}>Забыли пароль?</Text>
+      </TouchableOpacity>
       </View>
        <TouchableOpacity style={styles.button} >
             <Text style={styles.buttonText}>Войти</Text>

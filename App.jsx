@@ -25,15 +25,16 @@ const Tab = createBottomTabNavigator();
 
 function HomeStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="PasswordSuccessfulChanged" screenOptions={({ route }) => ({
+    <Stack.Navigator initialRouteName="Home" screenOptions={({ route }) => ({
       headerBackTitleVisible: false,
       headerTintColor: '#000', // Set back button color to black
       headerBackVisible: true, // Make back button visible
       headerShown: route.name !== 'Другое', // Show header only if the route name is not 'Другое'
     })}>
+      <Stack.Screen name="Home" component={Home} options={{ title: 'Восстановление пароля' }} />
       <Stack.Screen name="PasswordRecover" component={PasswordRecover} options={{ title: 'Восстановление пароля' }} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} options={{ title: 'Смена пароля', headerLeft: null }} />
-      <Stack.Screen name="PasswordSuccessfulChanged" component={PasswordSuccessfulChanged} options={{ title: 'Восстановление пароля' }} />
+      <Stack.Screen name="PasswordSuccessfulChanged" component={PasswordSuccessfulChanged} options={{ headerShown: false, headerLeft: null }} />
       <Stack.Screen name="SignIn" component={SignIn} options={{ title: 'Войти', headerLeft: null }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'Регистрация' }} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Политика конфиденциальности', }} />
