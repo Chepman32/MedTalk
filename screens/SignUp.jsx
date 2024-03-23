@@ -1,10 +1,11 @@
 
 /* eslint-disable quotes */
 import React, { useState } from 'react';
-import {SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { InputContainer } from '../components/InputContainer';
 import { useNavigation } from '@react-navigation/native';
+import { SMSverification } from '../components/SMSverification';
 
 export const SignUp = () => {
   const [name, setName] = useState('');
@@ -18,25 +19,39 @@ export const SignUp = () => {
   const navigation = useNavigation()
 
   return (
-    <SafeAreaView style={styles.container}>
-      <InputContainer text="Имя" value={name} setValue={setName} placeholder="Иван" isRequired />
-      <InputContainer text="Фамилия" value={secondName} setValue={setSecondName} placeholder={"Зайцев"} isRequired />
+    
+    <ScrollView><SafeAreaView style={styles.container}>
+      
+      <InputContainer text="Имя" type="name" value={name} setValue={setName} placeholder="Иван" isRequired />
+      <InputContainer text="Фамилия" type="secondName" value={secondName} setValue={setSecondName} placeholder={"Зайцев"} isRequired />
       <InputContainer text="Дата рождения" value={dateOfBirth} setValue={setDateOfBirth} placeholder={"ДД/ММ/ГГГ"} isRequired />
       <InputContainer text="ИИН" value={IIN} setValue={setIIN} placeholder={"000000000000"} />
       <InputContainer text="Почта" value={email} setValue={setEmail} placeholder={"ivan@gmail.com"} />
       <InputContainer text="Контактный номер" value={phone} setValue={setPhone} isRequired placeholder={"+&000 000 0000"} />
+      <View style={{ width: SCREEN_WIDTH * 0.95, alignItems: "flex-start"}} >
+      <Text style={styles.greyText}>Введите код подтверждения</Text>
+      </View>
+      <SMSverification/>
       <InputContainer text="Пароль" value={password} setValue={setPassword} placeholder={"••••••••"} isRequired/>
       <View style={{ width: SCREEN_WIDTH * 0.95, alignItems: "flex-end"}} >
       <Text style={styles.greenText}>Забыли пароль?</Text>
       </View>
        <TouchableOpacity style={styles.button} >
-            <Text style={styles.buttonText}>Войти</Text>
+            <Text style={styles.buttonText}>Зарегистрироваться</Text>
       </TouchableOpacity>
       <Text style={styles.greyText}>У меня уже есть аккаунт</Text>
       <TouchableOpacity onPress={() => navigation.navigate("SignIn")} >
       <Text style={styles.linkText}>Войти</Text>
       </TouchableOpacity>
+      <View style={{ width: SCREEN_WIDTH * 0.95, flexDirection: "row", flexWrap: "wrap"}} >
+      <Text style={styles.greyText}>Регистрируясь на портале, вы соглашаетесь
+          на сбор и</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("PrivacyPolicy")}>
+      <Text style={styles.linkText}>использование ваших данных</Text>
+    </TouchableOpacity>
+      </View>
     </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -44,26 +59,13 @@ const styles = StyleSheet.create({
   container: {
     width: SCREEN_WIDTH,
     flex: 1,
-    alignItems: "center",
-    paddingVertical: SCREEN_HEIGHT * 0.05,
-    backgroundColor: "#fff",
+    alignItems: 'center',
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    backgroundColor: "#fff"
   },
     mainText: {
       marginBottom: SCREEN_HEIGHT * 0.01,
-    fontWeight: '400',
-    fontSize: 12,
-    lineHeight: 15,
-    color: 'rgba(21, 21, 21, 1)',
-  },
-  input: {
-    width: SCREEN_WIDTH * 0.92,
-    height: SCREEN_HEIGHT * 0.035,
-    marginVertical: SCREEN_HEIGHT * 0.005,
-    paddingLeft: SCREEN_WIDTH * 0.04,
-    backgroundColor: 'rgba(235, 235, 235, 1)',
-    borderRadius: 8,
-  },
-  text: {
     fontWeight: '400',
     fontSize: 12,
     lineHeight: 15,
@@ -92,22 +94,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#fff',
   },
-  returnButton: {
-    width: SCREEN_WIDTH * 0.9,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: SCREEN_HEIGHT * 0.01,
-    paddingVertical: SCREEN_HEIGHT * 0.015,
-    backgroundColor: 'rgba(245, 245, 245, 1)',
-    borderRadius: 8,
-},
-returnButtonText: {
-    fontSize: 14,
-    fontWeight: '500',
-    lineHeight: 20,
-    textAlign: 'center',
-    color: 'rgba(21, 21, 21, 1)',
-},
   greyText: {
     marginTop: SCREEN_HEIGHT * 0.02,
     marginBottom: SCREEN_HEIGHT * 0.01,

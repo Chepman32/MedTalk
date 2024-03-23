@@ -31,6 +31,7 @@ function HomeStackNavigator() {
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
       <Stack.Screen name="SignIn" component={SignIn} options={{ title: 'Войти', headerLeft: null }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'Регистрация' }} />
+      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Политика конфиденциальности', }} />
     </Stack.Navigator>
   );
 }
@@ -77,6 +78,7 @@ export default function App() {
             <Image width={20} height={20} source={require('./assets/icons/home-page.png')} />
           ),
           tabBarActiveTintColor: 'green',
+          tabBarShowLabel: false
         }} />
         <Tab.Screen name="Избранное" component={FavoriteStackNavigator} options={{
           tabBarIcon: ({ }) => (

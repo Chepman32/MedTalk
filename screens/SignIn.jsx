@@ -41,21 +41,6 @@ const styles = StyleSheet.create({
     paddingVertical: SCREEN_HEIGHT * 0.05,
     backgroundColor: "#fff",
   },
-    mainText: {
-      marginBottom: SCREEN_HEIGHT * 0.01,
-    fontWeight: '400',
-    fontSize: 12,
-    lineHeight: 15,
-    color: 'rgba(21, 21, 21, 1)',
-  },
-  input: {
-    width: SCREEN_WIDTH * 0.92,
-    height: SCREEN_HEIGHT * 0.035,
-    marginVertical: SCREEN_HEIGHT * 0.005,
-    paddingLeft: SCREEN_WIDTH * 0.04,
-    backgroundColor: 'rgba(235, 235, 235, 1)',
-    borderRadius: 8,
-  },
   text: {
     fontWeight: '400',
     fontSize: 12,

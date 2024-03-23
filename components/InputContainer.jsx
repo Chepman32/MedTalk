@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 
-export const InputContainer = ({ text, value, setValue, placeholder, isRequired }) => {
+export const InputContainer = ({ text, type, value, setValue, placeholder, isRequired }) => {
   const [isValid, setIsValid] = useState(true);
 
   const validateInput = (input) => {
@@ -21,7 +21,7 @@ export const InputContainer = ({ text, value, setValue, placeholder, isRequired 
         value={value}
         onChangeText={(text) => {
           setValue(text);
-          validateInput(text);
+          type === "name" && validateInput(text) || type === "secondName" && validateInput(text);
         }}
         style={[styles.input, !isValid && styles.inputError]} // Apply error style if input is not valid
         placeholder={placeholder}
@@ -38,6 +38,7 @@ export const InputContainer = ({ text, value, setValue, placeholder, isRequired 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'flex-start',
+    paddingBottom: SCREEN_HEIGHT * 0.0005,
     backgroundColor: '#fff',
   },
   row: {
