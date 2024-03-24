@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import search from '../assets/icons/search.png';
 import banner from '../assets/images/banner.png';
@@ -17,10 +18,70 @@ import ads from '../assets/icons/Home_icons/Frame658356.png';
 import facilities from '../assets/icons/Home_icons/Frame658350.png';
 import insurance from '../assets/icons/Home_icons/Frame658354.png';
 import { AuthWarningModal } from '../components/AuthWarningModal';
+import { useNavigation } from '@react-navigation/native';
+import { GeolocationModal } from '../components/GeolocationModal';
+
+const locations = [
+  {
+    country: 'Казахстан',
+    cities: [
+      'Алматы',
+      'Астана',
+      'Шымкент',
+      'Актау',
+      'Актобе',
+      'Атырау',
+      'Караганда',
+      'Кокшетау',
+      'Костанай',
+      'Павлодар',
+      'Петропавловск',
+      'Талдыкорган',
+      'Тараз',
+    ],
+  },
+ ];
 
 export const Home = () => {
     const [searchValue, setSearchValue] = useState('');
-    const [isModalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [isLocationModalVisible, setLocationModalVisible] = useState(true);
+  const [currentLocation, setCurrentLocation] = useState(null);
+  useEffect(() => {
+    const getLocation = () => {
+      Geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+            .then(response => response.json())
+            .then(data => {
+              const city = data.address.city || 'Unknown';
+              setCurrentLocation(city);
+            })
+            .catch(error => {
+              console.error('Error getting current location:', error);
+              setCurrentLocation('Unknown');
+            });
+        },
+        (error) => {
+          console.error('Error getting current location:', error);
+          setCurrentLocation('Unknown');
+        }
+      );
+    };
+ 
+    getLocation();
+  }, []);
+ 
+  useEffect(() => {
+    if (currentLocation) {
+      console.log('Current Location:', currentLocation);
+      const isCity = locations.some((loc) => loc.cities.includes(currentLocation));
+      console.log('Is Current Location a City?', isCity ? 'Yes' : 'No');
+    }
+  }, [currentLocation]);
+  
+  const navigation = useNavigation();
 
     const toggleModal = () => {
         setModalVisible(true);
@@ -28,7 +89,16 @@ export const Home = () => {
   return (
       <View style={styles.container}>
           <View style={styles.head}>
-              <Image style={styles.headIcon} source={location}/>
+        <TouchableOpacity onPress={() => {
+          if (currentLocation) {
+            setLocationModalVisible(true)
+          }
+          else {
+            navigation.navigate("ChooseCity")
+          }
+        }}>
+        <Image style={styles.headIcon} source={location}/>
+              </TouchableOpacity>
           <View style={styles.inputContainer}>
                 <Image source={search} style={styles.icon} />
                 <TextInput
@@ -54,7 +124,8 @@ export const Home = () => {
               <Homeitem text={'Медицинское учреждение'} icon={facilities} onPress={toggleModal} />
               <Homeitem text={'Медицинское страхование'} icon={insurance} onPress={toggleModal}/>
           </View>
-          <AuthWarningModal isModalVisible={isModalVisible} setModalVisible={setModalVisible} hide={() => setModalVisible(false)} />
+      <AuthWarningModal isModalVisible={isModalVisible} setModalVisible={setModalVisible} hide={() => setModalVisible(false)} />
+      <GeolocationModal isModalVisible={isLocationModalVisible} hide={() => setLocationModalVisible(false)} city={currentLocation} />
     </View>
   );
 };

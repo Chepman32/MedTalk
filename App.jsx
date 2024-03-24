@@ -19,6 +19,7 @@ import { SignUp } from './screens/SignUp';
 import { PasswordRecover } from './screens/PasswordRecover';
 import { ChangePassword } from './screens/ChangePassword';
 import { PasswordSuccessfulChanged } from './screens/PasswordSuccessfulChanged';
+import { ChooseCity } from './screens/ChooseCity';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,18 +27,16 @@ const Tab = createBottomTabNavigator();
 function HomeStackNavigator() {
   return (
     <Stack.Navigator initialRouteName="Home" screenOptions={({ route }) => ({
-      headerBackTitleVisible: false,
-      headerTintColor: '#000', // Set back button color to black
-      headerBackVisible: true, // Make back button visible
-      headerShown: route.name !== 'Другое', // Show header only if the route name is not 'Другое'
+      headerShown: false,
     })}>
-      <Stack.Screen name="Home" component={Home} options={{ title: 'Восстановление пароля' }} />
+      <Stack.Screen name="Home" component={Home} options={{ title: 'Восстановление пароля',  }} />
       <Stack.Screen name="PasswordRecover" component={PasswordRecover} options={{ title: 'Восстановление пароля' }} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} options={{ title: 'Смена пароля', headerLeft: null }} />
       <Stack.Screen name="PasswordSuccessfulChanged" component={PasswordSuccessfulChanged} options={{ headerShown: false, headerLeft: null }} />
       <Stack.Screen name="SignIn" component={SignIn} options={{ title: 'Войти', headerLeft: null }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{ title: 'Регистрация' }} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Политика конфиденциальности', }} />
+      <Stack.Screen name="ChooseCity" component={ChooseCity} options={{ title: 'Политика конфиденциальности', }} />
     </Stack.Navigator>
   );
 }
@@ -78,13 +77,12 @@ function FavoriteStackNavigator() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator >
         <Tab.Screen name="Главная" component={HomeStackNavigator} options={{
           tabBarIcon: ({ color, size }) => (
             <Image width={20} height={20} source={require('./assets/icons/home-page.png')} />
           ),
           tabBarActiveTintColor: 'green',
-          tabBarShowLabel: false
         }} />
         <Tab.Screen name="Избранное" component={FavoriteStackNavigator} options={{
           tabBarIcon: ({ }) => (
