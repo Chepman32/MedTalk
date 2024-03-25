@@ -22,6 +22,7 @@ import { PasswordSuccessfulChanged } from './screens/PasswordSuccessfulChanged';
 import { ChooseCity } from './screens/ChooseCity';
 import { InsuranceDetails } from './screens/InsuranceDetails';
 import { InsuranceCatalog } from './screens/InsuranceCatalog';
+import { ProductCard } from './screens/ProductCard';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,7 +32,9 @@ function HomeStackNavigator() {
     <Stack.Navigator initialRouteName="Home" screenOptions={({ route }) => ({
       headerShown: false,
     })}>
-      <Stack.Screen name="Home" component={InsuranceCatalog} options={{ title: 'Восстановление пароля', }} />
+      <Stack.Screen name="Home" component={Home} options={{ title: 'Восстановление пароля', }} />
+      <Stack.Screen name="ProductCard" component={ProductCard} options={{ title: 'Восстановление пароля', }} />
+      <Stack.Screen name="InsuranceCatalog" component={InsuranceCatalog} options={{ title: 'Восстановление пароля', }} />
       <Stack.Screen name="InsuranceDetails" component={InsuranceDetails} options={{ title: 'Медицинское страхование',  }} />
       <Stack.Screen name="PasswordRecover" component={PasswordRecover} options={{ title: 'Восстановление пароля' }} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} options={{ title: 'Смена пароля', headerLeft: null }} />

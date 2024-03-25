@@ -47,6 +47,7 @@ export const Home = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isLocationModalVisible, setLocationModalVisible] = useState(true);
   const [currentLocation, setCurrentLocation] = useState(null);
+
   useEffect(() => {
     const getLocation = () => {
       Geolocation.getCurrentPosition(
@@ -122,7 +123,7 @@ export const Home = () => {
               <Homeitem text={'Медицинское оборудование'} icon={tools } onPress={toggleModal} />
               <Homeitem text={'Частные объявления'} icon={ads} onPress={toggleModal} />
               <Homeitem text={'Медицинское учреждение'} icon={facilities} onPress={toggleModal} />
-              <Homeitem text={'Медицинское страхование'} icon={insurance} onPress={toggleModal}/>
+              <Homeitem text={'Медицинское страхование'} icon={insurance} onPress={() => navigation.navigate("InsuranceCatalog")}/>
           </View>
       <AuthWarningModal isModalVisible={isModalVisible} setModalVisible={setModalVisible} hide={() => setModalVisible(false)} />
       <GeolocationModal isModalVisible={isLocationModalVisible} hide={() => setLocationModalVisible(false)} city={currentLocation} />
