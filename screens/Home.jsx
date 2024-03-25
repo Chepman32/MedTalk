@@ -70,10 +70,10 @@ export const Home = () => {
         }
       );
     };
- 
+
     getLocation();
   }, []);
- 
+
   useEffect(() => {
     if (currentLocation) {
       console.log('Current Location:', currentLocation);
@@ -81,7 +81,7 @@ export const Home = () => {
       console.log('Is Current Location a City?', isCity ? 'Yes' : 'No');
     }
   }, [currentLocation]);
-  
+
   const navigation = useNavigation();
 
     const toggleModal = () => {
@@ -92,10 +92,10 @@ export const Home = () => {
           <View style={styles.head}>
         <TouchableOpacity onPress={() => {
           if (currentLocation) {
-            setLocationModalVisible(true)
+            setLocationModalVisible(true);
           }
           else {
-            navigation.navigate("ChooseCity")
+            navigation.navigate('ChooseCity');
           }
         }}>
         <Image style={styles.headIcon} source={location}/>
@@ -123,7 +123,7 @@ export const Home = () => {
               <Homeitem text={'Медицинское оборудование'} icon={tools } onPress={toggleModal} />
               <Homeitem text={'Частные объявления'} icon={ads} onPress={toggleModal} />
               <Homeitem text={'Медицинское учреждение'} icon={facilities} onPress={toggleModal} />
-              <Homeitem text={'Медицинское страхование'} icon={insurance} onPress={() => navigation.navigate("InsuranceCatalog")}/>
+              <Homeitem text={'Медицинское страхование'} icon={insurance} onPress={() => navigation.navigate('InsuranceCatalog')}/>
           </View>
       <AuthWarningModal isModalVisible={isModalVisible} setModalVisible={setModalVisible} hide={() => setModalVisible(false)} />
       <GeolocationModal isModalVisible={isLocationModalVisible} hide={() => setLocationModalVisible(false)} city={currentLocation} />
@@ -139,12 +139,12 @@ const styles = StyleSheet.create({
     head: {
         width: SCREEN_WIDTH,
         flexDirection: 'row',
-        justifyContent: "space-between",
+        justifyContent: 'space-between',
         alignItems: 'center',
         paddingRight: 32, // Changed from paddingHorizontal to paddingRight
         paddingLeft: 16,
         backgroundColor: '#FFFFFF',
-        shadowColor: "#000",
+        shadowColor: '#000',
         shadowOffset: {
           width: 0,
           height: 1,
