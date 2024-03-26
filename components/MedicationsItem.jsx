@@ -7,14 +7,15 @@ import Fav from "../assets/icons/Frame_658375.png";
 import NotFav from "../assets/icons/favorite.png";
 import cart_white from "../assets/icons/cart_white.png";
 import MockImage1 from '../assets/images/medication1.png';
+import { FlatCarousel } from './FlatCarousel';
 
 export const MedicationsItem = ({ text, icon, type, isFavorite }) => {
     const [favorite, setFavorite] = useState(isFavorite)
 
     return (
     <TouchableOpacity style={styles.container} >
-          <View style={styles.row} >
-          <Image style={styles.image} source={MockImage1} />
+        <View style={styles.row} >
+          <FlatCarousel/>
           <View style={styles.content} >
             <View >
             <Text style={styles.title}>Парацетамол</Text>
@@ -22,7 +23,7 @@ export const MedicationsItem = ({ text, icon, type, isFavorite }) => {
             <Text style={styles.price}>1200 ₸</Text>
           </View>
             <View style={styles.buttons} >
-            <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+              <TouchableOpacity onPress={() => setFavorite(!favorite)}>
                 <Image style={styles.icon} source={favorite ? Fav : NotFav} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.buyButton} >
@@ -32,7 +33,6 @@ export const MedicationsItem = ({ text, icon, type, isFavorite }) => {
           </View>
           </View>
           </View>
-          <Text style={styles.text}>{type}</Text>
     </TouchableOpacity>
   );
 };
@@ -96,15 +96,16 @@ const styles = StyleSheet.create({
     color: 'rgba(0, 137, 100, 1)',
   },
   buttons: {
-    height: "100%",
     justifyContent: "space-between",
     alignItems: "flex-end",
+    paddingRight: SCREEN_WIDTH * 0.05,
   },
   buyButton: {
     width: SCREEN_WIDTH * 0.3,
     height: SCREEN_HEIGHT * 0.04,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: SCREEN_WIDTH * 0.15,
     backgroundColor: "rgba(0, 137, 100, 1)",
     borderRadius: 8,
   },

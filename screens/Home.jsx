@@ -20,177 +20,191 @@ import insurance from '../assets/icons/Home_icons/Frame658354.png';
 import { AuthWarningModal } from '../components/AuthWarningModal';
 import { useNavigation } from '@react-navigation/native';
 import { GeolocationModal } from '../components/GeolocationModal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const locations = [
-  {
-    country: 'Казахстан',
-    cities: [
-      'Алматы',
-      'Астана',
-      'Шымкент',
-      'Актау',
-      'Актобе',
-      'Атырау',
-      'Караганда',
-      'Кокшетау',
-      'Костанай',
-      'Павлодар',
-      'Петропавловск',
-      'Талдыкорган',
-      'Тараз',
-    ],
-  },
- ];
+ {
+   country: 'Казахстан',
+   cities: [
+     'Алматы',
+     'Астана',
+     'Шымкент',
+     'Актау',
+     'Актобе',
+     'Атырау',
+     'Караганда',
+     'Кокшетау',
+     'Костанай',
+     'Павлодар',
+     'Петропавловск',
+     'Талдыкорган',
+     'Тараз',
+   ],
+ },
+];
 
 export const Home = () => {
-    const [searchValue, setSearchValue] = useState('');
-  const [isModalVisible, setModalVisible] = useState(false);
-  const [isLocationModalVisible, setLocationModalVisible] = useState(true);
-  const [currentLocation, setCurrentLocation] = useState(null);
+ const [searchValue, setSearchValue] = useState('');
+ const [isModalVisible, setModalVisible] = useState(false);
+ const [isLocationModalVisible, setLocationModalVisible] = useState(false);
+ const [currentLocation, setCurrentLocation] = useState(null);
 
-  useEffect(() => {
-    const getLocation = () => {
-      Geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
-            .then(response => response.json())
-            .then(data => {
-              const city = data.address.city || 'Unknown';
-              setCurrentLocation(city);
-            })
-            .catch(error => {
-              console.error('Error getting current location:', error);
-              setCurrentLocation('Unknown');
-            });
-        },
-        (error) => {
-          console.error('Error getting current location:', error);
-          setCurrentLocation('Unknown');
-        }
-      );
-    };
+ useEffect(() => {
+   const getLocation = async () => {
+     try {
+       const storedLocation = await AsyncStorage.getItem('currentLocation');
+       if (storedLocation) {
+         setCurrentLocation(storedLocation);
+       }
 
-    getLocation();
-  }, []);
+       Geolocation.getCurrentPosition(
+         (position) => {
+           const { latitude, longitude } = position.coords;
+           fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+             .then(response => response.json())
+             .then(async data => {
+               const city = data.address.city || 'Unknown';
+               setCurrentLocation(city);
+               await AsyncStorage.setItem('currentLocation', city);
 
-  useEffect(() => {
-    if (currentLocation) {
-      console.log('Current Location:', currentLocation);
-      const isCity = locations.some((loc) => loc.cities.includes(currentLocation));
-      console.log('Is Current Location a City?', isCity ? 'Yes' : 'No');
-    }
-  }, [currentLocation]);
+               const isCity = locations.some((loc) => loc.cities.includes(city));
+               if (storedLocation !== city && isCity) {
+                 setLocationModalVisible(true);
+               }
+             })
+             .catch(error => {
+               console.error('Error getting current location:', error);
+               setCurrentLocation('Unknown');
+             });
+         },
+         (error) => {
+           console.error('Error getting current location:', error);
+           setCurrentLocation('Unknown');
+         }
+       );
+     } catch (error) {
+       console.error('Error getting stored location:', error);
+     }
+   };
 
-  const navigation = useNavigation();
+   getLocation();
+ }, []);
 
-    const toggleModal = () => {
-        setModalVisible(true);
-      };
-  return (
-      <View style={styles.container}>
-          <View style={styles.head}>
-        <TouchableOpacity onPress={() => {
-          if (currentLocation) {
-            setLocationModalVisible(true);
-          }
-          else {
-            navigation.navigate('ChooseCity');
-          }
-        }}>
-        <Image style={styles.headIcon} source={location}/>
-              </TouchableOpacity>
-          <View style={styles.inputContainer}>
-                <Image source={search} style={styles.icon} />
-                <TextInput
-                    value={searchValue}
-                    onChangeText={setSearchValue}
-                    style={styles.input}
-                    placeholder="Поиск"
-                    textAlignVertical="top"
-                />
-              </View>
-              <Image style={styles.headIcon} source={profile}/>
-          </View>
-          <Image style={styles.banner} source={banner} resizeMode="contain"/>
-      <View style={styles.buttons}>
-              <Homeitem text={'Медикаменты и аптеки'} icon={drugs} onPress={() => navigation.navigate("Medications")} />
-              <Homeitem text={'Врачи'} icon={doctor} />
-              <Homeitem text={'Выезд на дом и Онлайн консультация'} icon={car} onPress={toggleModal} />
-              <Homeitem text={'Лаборатории'} icon={labs} onPress={toggleModal} />
-              <Homeitem text={'Стоматологии'} icon={dentist}  onPress={toggleModal}/>
-              <Homeitem text={'Ветеринарные клиники'} icon={pets} onPress={toggleModal} />
-              <Homeitem text={'Медицинское оборудование'} icon={tools } onPress={toggleModal} />
-              <Homeitem text={'Частные объявления'} icon={ads} onPress={toggleModal} />
-              <Homeitem text={'Медицинское учреждение'} icon={facilities} onPress={toggleModal} />
-              <Homeitem text={'Медицинское страхование'} icon={insurance} onPress={() => navigation.navigate('InsuranceCatalog')}/>
-          </View>
-      <AuthWarningModal isModalVisible={isModalVisible} setModalVisible={setModalVisible} hide={() => setModalVisible(false)} />
-      <GeolocationModal isModalVisible={isLocationModalVisible} hide={() => setLocationModalVisible(false)} city={currentLocation} />
-    </View>
-  );
+ useEffect(() => {
+   if (currentLocation) {
+     console.log('Current Location:', currentLocation);
+     const isCity = locations.some((loc) => loc.cities.includes(currentLocation));
+     console.log('Is Current Location a City?', isCity ? 'Yes' : 'No');
+   }
+ }, [currentLocation]);
+
+ const navigation = useNavigation();
+
+ const toggleModal = () => {
+   setModalVisible(true);
+ };
+
+ const handleLocationPress = () => {
+   const isCity = locations.some((loc) => loc.cities.includes(currentLocation));
+   if (isCity) {
+     setLocationModalVisible(true);
+   } else {
+     navigation.navigate('ChooseCity');
+   }
+ };
+
+ return (
+   <View style={styles.container}>
+     <View style={styles.head}>
+       <TouchableOpacity onPress={handleLocationPress}>
+         <Image style={styles.headIcon} source={location} />
+       </TouchableOpacity>
+       <View style={styles.inputContainer}>
+         <Image source={search} style={styles.icon} />
+         <TextInput
+           value={searchValue}
+           onChangeText={setSearchValue}
+           style={styles.input}
+           placeholder="Поиск"
+           textAlignVertical="top"
+         />
+       </View>
+       <Image style={styles.headIcon} source={profile} />
+     </View>
+     <Image style={styles.banner} source={banner} resizeMode="contain" />
+     <View style={styles.buttons}>
+       <Homeitem text={'Медикаменты и аптеки'} icon={drugs} onPress={() => navigation.navigate("Medications")} />
+       <Homeitem text={'Врачи'} icon={doctor} />
+       <Homeitem text={'Выезд на дом и Онлайн консультация'} icon={car} onPress={toggleModal} />
+       <Homeitem text={'Лаборатории'} icon={labs} onPress={toggleModal} />
+       <Homeitem text={'Стоматологии'} icon={dentist} onPress={toggleModal} />
+       <Homeitem text={'Ветеринарные клиники'} icon={pets} onPress={toggleModal} />
+       <Homeitem text={'Медицинское оборудование'} icon={tools} onPress={toggleModal} />
+       <Homeitem text={'Частные объявления'} icon={ads} onPress={toggleModal} />
+       <Homeitem text={'Медицинское учреждение'} icon={facilities} onPress={toggleModal} />
+       <Homeitem text={'Медицинское страхование'} icon={insurance} onPress={() => navigation.navigate('InsuranceCatalog')} />
+     </View>
+     <AuthWarningModal isModalVisible={isModalVisible} setModalVisible={setModalVisible} hide={() => setModalVisible(false)} />
+     <GeolocationModal isModalVisible={isLocationModalVisible} hide={() => setLocationModalVisible(false)} city={currentLocation} />
+   </View>
+ );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10,
-    },
-    head: {
-        width: SCREEN_WIDTH,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingRight: 32, // Changed from paddingHorizontal to paddingRight
-        paddingLeft: 16,
-        backgroundColor: '#FFFFFF',
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        elevation: 3,
-      },
-    headIcon: {
-        width: SCREEN_WIDTH * 0.1,
-        height: SCREEN_WIDTH * 0.1,
-    },
-      inputContainer: {
-        flexDirection: 'row',
-          alignItems: 'center',
-        backgroundColor: 'rgba(245, 245, 245, 1)',
-        borderRadius: 8,
-        width: SCREEN_WIDTH * 0.6,
-        height: SCREEN_HEIGHT * 0.038,
-          marginVertical: SCREEN_HEIGHT * 0.005,
-          paddingRight: 40,
-      },
-      icon: {
-        marginLeft: SCREEN_WIDTH * 0.02,
-      },
-      input: {
-        flex: 1,
-        paddingLeft: SCREEN_WIDTH * 0.02,
-        },
-    banner: {
-        width: SCREEN_WIDTH * 0.95,
-      height: SCREEN_HEIGHT * 0.12,
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    marginBottom: 16,
-  },
-  bannerText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  buttons: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    marginBottom: 16,
-  },
+ container: {
+   flex: 1,
+   padding: 10,
+ },
+ head: {
+   width: SCREEN_WIDTH,
+   flexDirection: 'row',
+   justifyContent: 'space-between',
+   alignItems: 'center',
+   paddingRight: 32,
+   paddingLeft: 16,
+   backgroundColor: '#FFFFFF',
+   shadowColor: '#000',
+   shadowOffset: {
+     width: 0,
+     height: 1,
+   },
+   shadowOpacity: 0.22,
+   shadowRadius: 2.22,
+   elevation: 3,
+ },
+ headIcon: {
+   width: SCREEN_WIDTH * 0.1,
+   height: SCREEN_WIDTH * 0.1,
+ },
+ inputContainer: {
+   flexDirection: 'row',
+   alignItems: 'center',
+   backgroundColor: 'rgba(245, 245, 245, 1)',
+   borderRadius: 8,
+   width: SCREEN_WIDTH * 0.6,
+   height: SCREEN_HEIGHT * 0.038,
+   marginVertical: SCREEN_HEIGHT * 0.005,
+   paddingRight: 40,
+ },
+ icon: {
+   marginLeft: SCREEN_WIDTH * 0.02,
+ },
+ input: {
+   flex: 1,
+   paddingLeft: SCREEN_WIDTH * 0.02,
+ },
+ banner: {
+   width: SCREEN_WIDTH * 0.95,
+   height: SCREEN_HEIGHT * 0.12,
+   borderRadius: 10,
+   paddingVertical: 10,
+   paddingHorizontal: 16,
+   marginBottom: 16,
+ },
+ buttons: {
+   flexDirection: 'row',
+   flexWrap: 'wrap',
+   justifyContent: 'space-between',
+   marginBottom: 16,
+ },
 });
