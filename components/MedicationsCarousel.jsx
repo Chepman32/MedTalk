@@ -1,28 +1,29 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, Image, Dimensions } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import MockImage1 from '../assets/images/Rectangle_330.png';
-import MockImage2 from '../assets/images/Rectangle_329.png';
-import MockImage3 from '../assets/images/Rectangle_472.png';
+import MockImage1 from '../assets/images/medication1.png';
+import MockImage2 from '../assets/images/medication1.png';
+import MockImage3 from '../assets/images/medication1.png';
+import { SCREEN_WIDTH } from '../constants';
 
 const data = [
   {
-      text: 'Специальное техническое обслуживание'
-      , icon: MockImage1,
-      type: 'Медицинское оборудование / Сервис и ремонт',
-      isFavorite: true,
+    text: 'Специальное техническое обслуживание',
+    icon: MockImage1,
+    type: 'Медицинское оборудование / Сервис и ремонт',
+    isFavorite: true,
   },
   {
-      text: 'Скорая на дом “HealthCity”'
-      , icon: MockImage2,
-      type: '',
-      isFavorite: false,
+    text: 'Скорая на дом "HealthCity"',
+    icon: MockImage2,
+    type: '',
+    isFavorite: false,
   },
   {
-      text: 'МРТ оборудование с последним обновлением'
-      , icon: MockImage3,
-      type: 'Медицинское оборудование / Медицинская мебель',
-      isFavorite: true,
+    text: 'МРТ оборудование с последним обновлением',
+    icon: MockImage3,
+    type: 'Медицинское оборудование / Медицинская мебель',
+    isFavorite: true,
   },
 ];
 
@@ -33,15 +34,13 @@ const MedicationsCarousel = () => {
   const carouselRef = useRef(null);
 
   const renderItem = ({ item }) => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Image source={{ uri: item.imageUrl }} style={{ width: '100%', height: 200 }} resizeMode="contain" />
-      <Text style={{ marginTop: 10, fontSize: 16, fontWeight: 'bold' }}>{item.title}</Text>
-      <Text style={{ marginTop: 5 }}>{item.description}</Text>
+    <View style={{ width: SCREEN_WIDTH * 0.2, alignItems: 'center', justifyContent: 'center' }}>
+      <Image source={item.icon} style={{ width: '100%', height: 200 }} resizeMode="contain" />
     </View>
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, marginRight: SCREEN_WIDTH * 0.5 }}>
       <Carousel
         ref={carouselRef}
         data={data}

@@ -30,7 +30,7 @@ const Tab = createBottomTabNavigator();
 
 function HomeStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Medications" screenOptions={({ route }) => ({
+    <Stack.Navigator initialRouteName="Home" screenOptions={({ route }) => ({
       headerShown: false,
     })}>
       <Stack.Screen name="Home" component={Home} options={{ title: 'Восстановление пароля', }} />

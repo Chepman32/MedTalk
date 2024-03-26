@@ -1,14 +1,59 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Image, ScrollView } from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { SearchInputContainer } from '../components/SearchInputContainer';
 import drugStoreIcon from "../assets/icons/drugStore.png";
 import pillIcon from "../assets/icons/Home_icons/pill.png";
 import { MedicationsItem } from './MedicationsItem';
+import { DrugstoreItem } from './DrugstoreItem';
+import MockImage from '../assets/images/Rectangle_313.png';
+import banner from '../assets/images/banner.png';
+
+const stores = [
+    {
+        title: 'Центральная аптека №1',
+        image: MockImage,
+        rating: 4,
+        address: "ул. Абая, 175",
+        todaySchedule: "9:00 - 21:00",
+    contacts: "+7 701 234 56 78",
+        isFavorite: true,
+    },
+    {
+        title: 'Центральная аптека №1',
+        image: MockImage,
+        rating: 4,
+        address: "ул. Абая, 175",
+        todaySchedule: "9:00 - 21:00",
+    contacts: "+7 701 234 56 78",
+        isFavorite: true,
+    },
+    {
+        title: 'Центральная аптека №1',
+        image: MockImage,
+        rating: 4,
+        address: "ул. Абая, 175",
+        todaySchedule: "9:00 - 21:00",
+    contacts: "+7 701 234 56 78",
+        isFavorite: true,
+    },
+    {
+        title: 'Центральная аптека №1',
+        image: MockImage,
+        rating: 4,
+        address: "ул. Абая, 175",
+        todaySchedule: "9:00 - 21:00",
+    contacts: "+7 701 234 56 78",
+        isFavorite: true,
+    },
+];
 
 export const Medications = () => {
     const [searchValue, setSearchValue] = useState('');
-    const [activeTab, setActiveTab] = useState("left");
+    const [activeTab, setActiveTab] = useState("right");
+
+
+    const filteredData = stores.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase()));
 
     const rightButtonStyle = {
         borderTopRightRadius: 8,
@@ -43,8 +88,23 @@ export const Medications = () => {
                 </TouchableOpacity>
             </View>
             <SearchInputContainer searchValue={searchValue} setSearchValue={setSearchValue} placeholder={"Поиск медикаментов"} />
+
+            {
+                activeTab === "left"
+                ?
+                <ScrollView>
             <MedicationsItem />
             <MedicationsItem/>
+                    </ScrollView>
+                    :
+                    <ScrollView>
+            {
+                    stores.length ? filteredData.map((s, index) => <DrugstoreItem key={s.title + index} title={s.text} image={s.image} address={s.address} rating={s.rating} isFavorite={s.isFavorite} contacts={s.contacts} />)
+                            : null
+                        }
+            </ScrollView>
+            }
+            <Image style={styles.banner} source={banner} resizeMode="contain"/>
         </SafeAreaView>
     );
 };
@@ -52,6 +112,7 @@ export const Medications = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: SCREEN_WIDTH,
         paddingVertical: SCREEN_HEIGHT * 0.02,
         paddingHorizontal: SCREEN_WIDTH * 0.05,
     },
@@ -89,4 +150,12 @@ const styles = StyleSheet.create({
         fontWeight: "400",
         color: "#fff",
     },
+    banner: {
+        width:"100%",
+      height: SCREEN_HEIGHT * 0.12,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    marginBottom: 16,
+  },
 });
