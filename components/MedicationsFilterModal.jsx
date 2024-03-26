@@ -35,7 +35,7 @@ export const MedicationsFilterModal = ({ isModalVisible, hide }) => {
               <TouchableOpacity style={selected === "all" ? styles.activeButton : styles.inActiveButton} onPress={() => setSelected("all")}>
                   <Text style={styles.mainText}>Все</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button} onPress={hide} >
                   <Text style={styles.buttonText}>Применить</Text>
         </TouchableOpacity>
               </View>

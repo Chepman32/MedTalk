@@ -24,16 +24,18 @@ import { InsuranceDetails } from './screens/InsuranceDetails';
 import { InsuranceCatalog } from './screens/InsuranceCatalog';
 import { ProductCard } from './screens/ProductCard';
 import { Medications } from './screens/Medications';
+import { PharmacyDetails } from './screens/PharmacyDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function HomeStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Medications" screenOptions={({ route }) => ({
+    <Stack.Navigator initialRouteName="Home" screenOptions={({ route }) => ({
       headerShown: false,
     })}>
       <Stack.Screen name="Home" component={Home} options={{ title: 'Восстановление пароля', }} />
+      <Stack.Screen name="PharmacyDetails" component={PharmacyDetails} options={{ title: 'Восстановление пароля', }} />
       <Stack.Screen name="Medications" component={Medications} options={{ title: 'Восстановление пароля', }} />
       <Stack.Screen name="ProductCard" component={ProductCard} options={{ title: 'Восстановление пароля', }} />
       <Stack.Screen name="InsuranceCatalog" component={InsuranceCatalog} options={{ title: 'Восстановление пароля', }} />

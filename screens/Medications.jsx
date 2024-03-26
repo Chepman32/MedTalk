@@ -5,8 +5,8 @@ import { SearchInputContainer } from '../components/SearchInputContainer';
 import filter from '../assets/icons/filter.png';
 import drugStoreIcon from '../assets/icons/drugStore.png';
 import pillIcon from '../assets/icons/Home_icons/pill.png';
-import { MedicationsItem } from './MedicationsItem';
-import { DrugstoreItem } from './DrugstoreItem';
+import { MedicationsItem } from '../components/MedicationsItem';
+import { PharmacyItem } from './PharmacyItem';
 import MockImage from '../assets/images/Rectangle_313.png';
 import banner from '../assets/images/banner.png';
 import { MedicationsFilterModal } from '../components/MedicationsFilterModal';
@@ -105,7 +105,7 @@ export const Medications = () => {
                     :
                     <ScrollView>
             {
-                            stores.length ? filteredData.map((s, index) => <DrugstoreItem
+                            stores.length ? filteredData.map((s, index) => <PharmacyItem
                                 key={s.title + index} title={s.text}
                                 image={s.image}
                                 address={s.address}

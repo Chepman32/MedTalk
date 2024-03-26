@@ -8,13 +8,13 @@ import star from '../assets/icons/star.png';
 import empty_star from '../assets/icons/empty_star.png';
 import { useNavigation } from '@react-navigation/native';
 
-export const DrugstoreItem = ({ title, image, address, rating, todaySchedule, contacts, isFavorite }) => {
+export const PharmacyItem = ({ title, image, address, rating, todaySchedule, contacts, isFavorite }) => {
   const [favorite, setFavorite] = useState(isFavorite);
 
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('InsuranceDetails')} >
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('PharmacyDetails')} >
       <Text style={styles.title}>{title} </Text>
       <View style={styles.row} >
         <Image style={styles.image} source={image} />
