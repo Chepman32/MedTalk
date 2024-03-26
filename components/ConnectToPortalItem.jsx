@@ -6,7 +6,6 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { useNavigation } from '@react-navigation/native';
 
 export const ConnectToPortalItem = ({ text, selected, setSelected }) => {
-  const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={[

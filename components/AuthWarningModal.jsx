@@ -6,7 +6,7 @@ import attention from '../assets/icons/attention.png';
 import close from '../assets/icons/close.png';
 import { useNavigation } from '@react-navigation/native';
 
-export const AuthWarningModal = ({ isModalVisible, setModalVisible, hide }) => {
+export const AuthWarningModal = ({ isModalVisible, hide }) => {
   const navigation = useNavigation()
   return (
     <Modal 

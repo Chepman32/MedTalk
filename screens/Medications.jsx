@@ -2,55 +2,58 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Image, ScrollView } from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { SearchInputContainer } from '../components/SearchInputContainer';
-import drugStoreIcon from "../assets/icons/drugStore.png";
-import pillIcon from "../assets/icons/Home_icons/pill.png";
+import filter from '../assets/icons/filter.png';
+import drugStoreIcon from '../assets/icons/drugStore.png';
+import pillIcon from '../assets/icons/Home_icons/pill.png';
 import { MedicationsItem } from './MedicationsItem';
 import { DrugstoreItem } from './DrugstoreItem';
 import MockImage from '../assets/images/Rectangle_313.png';
 import banner from '../assets/images/banner.png';
+import { MedicationsFilterModal } from '../components/MedicationsFilterModal';
 
 const stores = [
     {
         title: 'Центральная аптека №1',
         image: MockImage,
         rating: 4,
-        address: "ул. Абая, 175",
-        todaySchedule: "9:00 - 21:00",
-    contacts: "+7 701 234 56 78",
+        address: 'ул. Абая, 175',
+        todaySchedule: '9:00 - 21:00',
+    contacts: '+7 701 234 56 78',
         isFavorite: true,
     },
     {
         title: 'Центральная аптека №1',
         image: MockImage,
         rating: 4,
-        address: "ул. Абая, 175",
-        todaySchedule: "9:00 - 21:00",
-    contacts: "+7 701 234 56 78",
+        address: 'ул. Абая, 175',
+        todaySchedule: '9:00 - 21:00',
+    contacts: '+7 701 234 56 78',
         isFavorite: true,
     },
     {
         title: 'Центральная аптека №1',
         image: MockImage,
         rating: 4,
-        address: "ул. Абая, 175",
-        todaySchedule: "9:00 - 21:00",
-    contacts: "+7 701 234 56 78",
+        address: 'ул. Абая, 175',
+        todaySchedule: '9:00 - 21:00',
+    contacts: '+7 701 234 56 78',
         isFavorite: true,
     },
     {
         title: 'Центральная аптека №1',
         image: MockImage,
         rating: 4,
-        address: "ул. Абая, 175",
-        todaySchedule: "9:00 - 21:00",
-    contacts: "+7 701 234 56 78",
+        address: 'ул. Абая, 175',
+        todaySchedule: '9:00 - 21:00',
+    contacts: '+7 701 234 56 78',
         isFavorite: true,
     },
 ];
 
 export const Medications = () => {
     const [searchValue, setSearchValue] = useState('');
-    const [activeTab, setActiveTab] = useState("right");
+    const [activeTab, setActiveTab] = useState('right');
+    const [isModalVisible, setModalVisible] = useState(false);
 
 
     const filteredData = stores.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase()));
@@ -67,30 +70,33 @@ export const Medications = () => {
 
     return (
         <SafeAreaView style={styles.container}>
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <Image source={filter} style={styles.filterIcon} />
+            </TouchableOpacity>
             <View style={styles.tabs}>
                 <TouchableOpacity
-                    style={[styles.tab, activeTab === "left" ? styles.activeTab : styles.inActiveTab, leftButtonStyle]}
-                    onPress={() => setActiveTab("left")}
+                    style={[styles.tab, activeTab === 'left' ? styles.activeTab : styles.inActiveTab, leftButtonStyle]}
+                    onPress={() => setActiveTab('left')}
                 >
                     <Image source={pillIcon} style={styles.tabIcon} />
-                    <Text style={activeTab === "left" ? styles.activeTabText : styles.inActiveTabText}>
+                    <Text style={activeTab === 'left' ? styles.activeTabText : styles.activeTabText}>
                         Медикаменты
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={[styles.tab, activeTab === "right" ? styles.activeTab : styles.inActiveTab, rightButtonStyle]}
-                    onPress={() => setActiveTab("right")}
+                    style={[styles.tab, activeTab === 'right' ? styles.activeTab : styles.inActiveTab, rightButtonStyle]}
+                    onPress={() => setActiveTab('right')}
                 >
                     <Image source={drugStoreIcon} style={styles.tabIcon} />
-                    <Text style={activeTab === "right" ? styles.activeTabText : styles.inActiveTabText}>
+                    <Text style={activeTab === 'right' ? styles.activeTabText : styles.activeTabText}>
                         Аптеки
                     </Text>
                 </TouchableOpacity>
             </View>
-            <SearchInputContainer searchValue={searchValue} setSearchValue={setSearchValue} placeholder={"Поиск медикаментов"} />
+            <SearchInputContainer searchValue={searchValue} setSearchValue={setSearchValue} placeholder={'Поиск медикаментов'} />
 
             {
-                activeTab === "left"
+                activeTab === 'left'
                 ?
                 <ScrollView>
             <MedicationsItem />
@@ -99,12 +105,19 @@ export const Medications = () => {
                     :
                     <ScrollView>
             {
-                    stores.length ? filteredData.map((s, index) => <DrugstoreItem key={s.title + index} title={s.text} image={s.image} address={s.address} rating={s.rating} isFavorite={s.isFavorite} contacts={s.contacts} />)
+                            stores.length ? filteredData.map((s, index) => <DrugstoreItem
+                                key={s.title + index} title={s.text}
+                                image={s.image}
+                                address={s.address}
+                                rating={s.rating}
+                                isFavorite={s.isFavorite} contacts={s.contacts}
+                            />)
                             : null
                         }
             </ScrollView>
             }
-            <Image style={styles.banner} source={banner} resizeMode="contain"/>
+            <Image style={styles.banner} source={banner} resizeMode="contain" />
+            <MedicationsFilterModal isModalVisible={isModalVisible} hide={() => setModalVisible(false)}/>
         </SafeAreaView>
     );
 };
@@ -115,6 +128,11 @@ const styles = StyleSheet.create({
         width: SCREEN_WIDTH,
         paddingVertical: SCREEN_HEIGHT * 0.02,
         paddingHorizontal: SCREEN_WIDTH * 0.05,
+    },
+    filterIcon: {
+        width: SCREEN_WIDTH * 0.1,
+        height: SCREEN_WIDTH * 0.1,
+        marginBottom: SCREEN_WIDTH * 0.05,
     },
     tabs: {
         flexDirection: "row",
