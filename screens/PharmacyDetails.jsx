@@ -13,16 +13,24 @@ import search from '../assets/icons/search.png';
 import { carouselData } from '../mockData';
 import { carouselItems } from './InsuranceDetails';
 import { RateUsModal } from '../components/RateUsModal';
+import { ContactsModal } from '../components/ContactsModal';
+import { ScheduleModal } from "../components/ScheduleModal"
 
 export const PharmacyDetails = () => {
   const [aboutModal, setAboutModal] = useState(false);
   const [branchesModal, setBranchesModal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const [scheduleModal, setScheduleModal] = useState(false);
+  const [isContactsModal, setIsContactsModal] = useState(false);
   const [rateModal, setRateModal] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
-      <PharmacyHead showModal={() => setRateModal(true)} />
+      <PharmacyHead
+        showModal={() => setRateModal(true)}
+        showContactsModal={() => setIsContactsModal(true)}
+        showScheduleModal={() => setScheduleModal(true)}
+      />
       <View style={{ height: 250 }}>
         <CustomCarousel items={carouselItems} />
       </View>
@@ -41,7 +49,9 @@ export const PharmacyDetails = () => {
       </ScrollView>
       <PharmacyAboutModal isModalVisible={aboutModal} hide={() => setAboutModal(false)} />
       <PharmacyBranchesModal isModalVisible={branchesModal} hide={() => setBranchesModal(false)} />
-      <RateUsModal isModalVisible={rateModal} hide={() => setRateModal(false)}/>
+      <RateUsModal isModalVisible={rateModal} hide={() => setRateModal(false)} />
+      <ContactsModal isModalVisible={isContactsModal} hide={() => setIsContactsModal(false)} />
+      <ScheduleModal isModalVisible={scheduleModal} hide={() => setScheduleModal(false)}/>
     </SafeAreaView>
   );
 };
