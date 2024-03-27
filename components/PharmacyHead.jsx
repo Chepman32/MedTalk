@@ -18,7 +18,7 @@ import preview4 from "../assets/images/Pharmacy/image_257.png"
 import preview5 from "../assets/images/Pharmacy/image_157.png"
 
 
-export const PharmacyHead = ({ text, icon, type, isFavorite }) => {
+export const PharmacyHead = ({ text, icon, type, isFavorite, showModal }) => {
     const [favorite, setFavorite] = useState(isFavorite)
 
     return (
@@ -28,13 +28,13 @@ export const PharmacyHead = ({ text, icon, type, isFavorite }) => {
                 <View style={styles.content} >
             <View>
               <Text style={styles.title}>Europharma</Text>
-              <View style={styles.row}>
+              <TouchableOpacity style={styles.row} onPress={showModal}>
                 <Image style={styles.icon} source={star} />
                 <Image style={styles.icon} source={star} />
                 <Image style={styles.icon} source={star} />
                 <Image style={styles.icon} source={star} />
                 <Image style={styles.icon} source={empty_star}/>
-              </View>
+              </TouchableOpacity>
               <View style={styles.row}>
                 <Image style={styles.icon} source={time} />
                 <Image style={styles.icon} source={phone} />

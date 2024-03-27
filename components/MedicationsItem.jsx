@@ -15,7 +15,7 @@ export const MedicationsItem = ({ text, icon, type, isFavorite }) => {
     return (
     <TouchableOpacity style={styles.container} >
         <View style={styles.row} >
-          <FlatCarousel/>
+          <Image style={styles.image} source={MockImage1} />
           <View style={styles.content} >
             <View >
             <Text style={styles.title}>Парацетамол</Text>

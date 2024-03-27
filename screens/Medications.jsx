@@ -7,48 +7,9 @@ import drugStoreIcon from '../assets/icons/drugStore.png';
 import pillIcon from '../assets/icons/Home_icons/pill.png';
 import { MedicationsItem } from '../components/MedicationsItem';
 import { PharmacyItem } from './PharmacyItem';
-import MockImage from '../assets/images/Rectangle_313.png';
 import banner from '../assets/images/banner.png';
 import { MedicationsFilterModal } from '../components/MedicationsFilterModal';
-
-const stores = [
-    {
-        title: 'Центральная аптека №1',
-        image: MockImage,
-        rating: 4,
-        address: 'ул. Абая, 175',
-        todaySchedule: '9:00 - 21:00',
-    contacts: '+7 701 234 56 78',
-        isFavorite: true,
-    },
-    {
-        title: 'Центральная аптека №1',
-        image: MockImage,
-        rating: 4,
-        address: 'ул. Абая, 175',
-        todaySchedule: '9:00 - 21:00',
-    contacts: '+7 701 234 56 78',
-        isFavorite: true,
-    },
-    {
-        title: 'Центральная аптека №1',
-        image: MockImage,
-        rating: 4,
-        address: 'ул. Абая, 175',
-        todaySchedule: '9:00 - 21:00',
-    contacts: '+7 701 234 56 78',
-        isFavorite: true,
-    },
-    {
-        title: 'Центральная аптека №1',
-        image: MockImage,
-        rating: 4,
-        address: 'ул. Абая, 175',
-        todaySchedule: '9:00 - 21:00',
-    contacts: '+7 701 234 56 78',
-        isFavorite: true,
-    },
-];
+import { stores } from '../mockData';
 
 export const Medications = () => {
     const [searchValue, setSearchValue] = useState('');

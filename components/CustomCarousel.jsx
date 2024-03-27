@@ -23,6 +23,7 @@ export const CustomCarousel = ({items}) => {
         style={{
           maxWidth: '100%',
           maxHeight: 150,
+          resizeMode: "cover"
         }}
         source={item.image} resizeMode="contain" />
       <Text>{item.text}</Text>
