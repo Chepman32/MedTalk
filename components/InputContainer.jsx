@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 
-export const InputContainer = ({ text, type, value, setValue, placeholder, isRequired }) => {
+export const InputContainer = ({ text, type, value, setValue, placeholder, isRequired, style, multiline }) => {
   const [isValid, setIsValid] = useState(true);
 
   const validateInput = (input) => {
@@ -11,7 +11,7 @@ export const InputContainer = ({ text, type, value, setValue, placeholder, isReq
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{...styles.container, ...style}}>
       <View style={styles.row}>
         <Text style={styles.text}>
           {text} {isRequired && <Text style={styles.required}>* </Text>}
@@ -19,14 +19,15 @@ export const InputContainer = ({ text, type, value, setValue, placeholder, isReq
       </View>
       <TextInput
         value={value}
+        multiline={multiline}
         onChangeText={(text) => {
           setValue(text);
           type === "name" && validateInput(text) || type === "secondName" && validateInput(text);
         }}
-        style={[styles.input, !isValid && styles.inputError]} // Apply error style if input is not valid
+        style={[{...styles.input, ...style}, !isValid && styles.inputError]} // Apply error style if input is not valid
         placeholder={placeholder}
         textAlignVertical="top"
-        keyboardType="visible-password"
+        placeholderTextColor={"#8a8780"}
       />
       {!isValid && (
         <Text style={styles.errorText}>Введите корректное имя</Text> // Display error message
@@ -38,7 +39,7 @@ export const InputContainer = ({ text, type, value, setValue, placeholder, isReq
 const styles = StyleSheet.create({
   container: {
     alignItems: 'flex-start',
-    paddingBottom: SCREEN_HEIGHT * 0.0005,
+    marginVertical: SCREEN_HEIGHT * 0.0005,
     backgroundColor: '#fff',
   },
   row: {
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
     paddingLeft: SCREEN_WIDTH * 0.04,
     backgroundColor: 'rgba(235, 235, 235, 1)',
     borderRadius: 8,
+    color: "#000"
   },
   text: {
     fontWeight: '400',
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   inputError: {
-    borderColor: 'red', // Border color for error
+    borderColor: 'red',
   },
   errorText: {
     color: 'red',

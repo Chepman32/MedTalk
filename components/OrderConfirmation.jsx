@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -8,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import {SuccessfulMessage } from '../components/SuccessfulMessage';
-import { SCREEN_WIDTH } from '../constants';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { InputContainer } from './InputContainer';
 import { CustomCheckBox } from './CustomCheckBox';
 
@@ -25,7 +26,8 @@ export const OrderConfirmation = () => {
     const [stage, setStage] = useState('');
     const [comment, setComment] = useState('');
   return (
-      <SafeAreaView style={styles.container}>
+      <ScrollView bounces={false}>
+          <SafeAreaView style={styles.container}>
           <Text style={styles.boldText}>
           Данные покупателя
           </Text>
@@ -37,14 +39,21 @@ export const OrderConfirmation = () => {
           </Text>
           <InputContainer text="Город" value={city} setValue={setCity} placeholder={"Алматы"} />
           <InputContainer text="Улица" value={street} setValue={setStreet} placeholder={"Байзакова"} />
-          <InputContainer text="Дом" value={house} setValue={setHouse} placeholder={"Алматы"} />
-          <InputContainer text="Квартира/Офис" value={apt} setValue={setApt} placeholder={"Квартира/Офис"} />
-          <InputContainer text="Домофон" value={interphone} setValue={setInterphone} placeholder={"Домофон"} />
-          <InputContainer text="Подъезд" value={driveway} setValue={setDriveway} placeholder={"Подъезд"} />
-          <InputContainer text="Этаж" value={stage} setValue={setStage} placeholder={"Этаж"} />
-          <InputContainer text="Коментарий" value={comment} setValue={setComment} placeholder={"Коментарий"} />
+              <View style={styles.row}>
+              <InputContainer text="Дом" value={house} setValue={setHouse} placeholder={"Дом"} style={{width: SCREEN_WIDTH * 0.4}} />
+              <InputContainer text="Квартира/Офис" value={apt} setValue={setApt} placeholder={"Квартира/Офис"} style={{width: SCREEN_WIDTH * 0.4}}/>
+          </View>
+              <View style={styles.row}>
+              <InputContainer text="Домофон" value={interphone} setValue={setInterphone} placeholder={"Домофон"} style={{width: SCREEN_WIDTH * 0.25}} />
+          <InputContainer text="Подъезд" value={driveway} setValue={setDriveway} placeholder={"Подъезд"} style={{width: SCREEN_WIDTH * 0.25}} />
+          <InputContainer text="Этаж" value={stage} setValue={setStage} placeholder={"Этаж"} style={{width: SCREEN_WIDTH * 0.25}} />
+          </View>
+          <View style={styles.comment}>
+          <InputContainer text="Коментарий" value={comment} setValue={setComment} placeholder={"Коментарий"} multiline />
+          </View>
           <CustomCheckBox/>
     </SafeAreaView>
+      </ScrollView>
   );
 };
 
@@ -63,15 +72,14 @@ const styles = StyleSheet.create({
     lineHeight:  SCREEN_WIDTH * 0.05,
     color: 'rgba(21, 21, 21, 1)',
   },
-  input: {
-    width: SCREEN_WIDTH * 0.95,
-    height: 200,
-    marginVertical: 20,
-    padding: 12,
-    paddingTop: 12,
-    backgroundColor: 'rgba(235, 235, 235, 1)',
-    borderRadius: 8,
-  },
+    comment: {
+      marginBottom: SCREEN_HEIGHT * 0.05
+    },
+    row: {
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "space-between"
+    },
   button: {
     width: SCREEN_WIDTH * 0.95,
     justifyContent: 'center',
