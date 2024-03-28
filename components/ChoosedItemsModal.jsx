@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         height: SCREEN_WIDTH * 0.1,
         marginRight: SCREEN_WIDTH * 0.02,
         borderWidth: 1,
-        borderBlockColor: 'rgba(235, 235, 235, 1)',
+        borderColor: 'rgba(235, 235, 235, 1)',
         borderRadius: 8,
       },
     title: {

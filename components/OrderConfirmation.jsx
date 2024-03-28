@@ -10,6 +10,7 @@ import {
 import {SuccessfulMessage } from '../components/SuccessfulMessage';
 import { SCREEN_WIDTH } from '../constants';
 import { InputContainer } from './InputContainer';
+import { CustomCheckBox } from './CustomCheckBox';
 
 export const OrderConfirmation = () => {
     const [name, setName] = useState('');
@@ -42,6 +43,7 @@ export const OrderConfirmation = () => {
           <InputContainer text="Подъезд" value={driveway} setValue={setDriveway} placeholder={"Подъезд"} />
           <InputContainer text="Этаж" value={stage} setValue={setStage} placeholder={"Этаж"} />
           <InputContainer text="Коментарий" value={comment} setValue={setComment} placeholder={"Коментарий"} />
+          <CustomCheckBox/>
     </SafeAreaView>
   );
 };
