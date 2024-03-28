@@ -25,6 +25,7 @@ import { InsuranceCatalog } from './screens/InsuranceCatalog';
 import { ProductCard } from './screens/ProductCard';
 import { Medications } from './screens/Medications';
 import { PharmacyDetails } from './screens/PharmacyDetails';
+import { OrderConfirmation } from './components/OrderConfirmation';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -84,6 +85,15 @@ function FavoriteStackNavigator() {
   );
 }
 
+function CartStackNavigator() {
+  return (
+    <Stack.Navigator initialRouteName="OrderConfirmation" >
+      <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+      <Stack.Screen name="OrderConfirmation" component={OrderConfirmation} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -99,7 +109,7 @@ export default function App() {
             <Image width={20} height={20} source={require('./assets/icons/favorite.png')} />
           ),
         }} />
-        <Tab.Screen name="Корзина" component={Cart} options={{
+        <Tab.Screen name="Корзина" component={CartStackNavigator} options={{
           tabBarIcon: ({ color, size }) => (
             <Image width={20} height={20} source={require('./assets/icons/shop.png')} />
           ),

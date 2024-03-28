@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
   },
   price: {
     maxWidth: SCREEN_WIDTH * 0.8,
-    fontWeight: '400',
     fontSize: SCREEN_WIDTH * 0.04,
     lineHeight: SCREEN_WIDTH * 0.04,
     fontWeight: "600",
