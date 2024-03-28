@@ -10,11 +10,13 @@ import { PharmacyItem } from './PharmacyItem';
 import banner from '../assets/images/banner.png';
 import { MedicationsFilterModal } from '../components/MedicationsFilterModal';
 import { stores } from '../mockData';
+import { ChoosedItemsModal } from '../components/ChoosedItemsModal';
 
 export const Medications = () => {
     const [searchValue, setSearchValue] = useState('');
     const [activeTab, setActiveTab] = useState('right');
     const [isModalVisible, setModalVisible] = useState(false);
+    const [choosedModal, setChoosedModal] = useState(false)
 
 
     const filteredData = stores.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase()));
@@ -60,8 +62,8 @@ export const Medications = () => {
                 activeTab === 'left'
                 ?
                 <ScrollView>
-            <MedicationsItem />
-            <MedicationsItem/>
+            <MedicationsItem showChoosedModal={() => setChoosedModal(true)} />
+            <MedicationsItem showChoosedModal={() => setChoosedModal(true)}/>
                     </ScrollView>
                     :
                     <ScrollView>
@@ -78,7 +80,8 @@ export const Medications = () => {
             </ScrollView>
             }
             <Image style={styles.banner} source={banner} resizeMode="contain" />
-            <MedicationsFilterModal isModalVisible={isModalVisible} hide={() => setModalVisible(false)}/>
+            <MedicationsFilterModal isModalVisible={isModalVisible} hide={() => setModalVisible(false)} />
+            <ChoosedItemsModal isModalVisible={choosedModal} hide={() => setChoosedModal(false)}/>
         </SafeAreaView>
     );
 };

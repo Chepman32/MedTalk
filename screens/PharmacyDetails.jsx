@@ -15,6 +15,7 @@ import { carouselItems } from './InsuranceDetails';
 import { RateUsModal } from '../components/RateUsModal';
 import { ContactsModal } from '../components/ContactsModal';
 import { ScheduleModal } from "../components/ScheduleModal"
+import { ChoosedItemsModal } from '../components/ChoosedItemsModal';
 
 export const PharmacyDetails = () => {
   const [aboutModal, setAboutModal] = useState(false);
@@ -23,6 +24,7 @@ export const PharmacyDetails = () => {
   const [scheduleModal, setScheduleModal] = useState(false);
   const [isContactsModal, setIsContactsModal] = useState(false);
   const [rateModal, setRateModal] = useState(false);
+  const [choosedModal, setChoosedModal] = useState(false)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -45,13 +47,15 @@ export const PharmacyDetails = () => {
         />
       </View>
       <ScrollView style={{ marginTop: SCREEN_HEIGHT * 0.02 }}>
-        <MedicationsItem />
+      <MedicationsItem showChoosedModal={() => setChoosedModal(true)} />
+            <MedicationsItem showChoosedModal={() => setChoosedModal(true)}/>
       </ScrollView>
       <PharmacyAboutModal isModalVisible={aboutModal} hide={() => setAboutModal(false)} />
       <PharmacyBranchesModal isModalVisible={branchesModal} hide={() => setBranchesModal(false)} />
       <RateUsModal isModalVisible={rateModal} hide={() => setRateModal(false)} />
       <ContactsModal isModalVisible={isContactsModal} hide={() => setIsContactsModal(false)} />
-      <ScheduleModal isModalVisible={scheduleModal} hide={() => setScheduleModal(false)}/>
+      <ScheduleModal isModalVisible={scheduleModal} hide={() => setScheduleModal(false)} />
+      <ChoosedItemsModal isModalVisible={choosedModal} hide={() => setChoosedModal(false)}/>
     </SafeAreaView>
   );
 };

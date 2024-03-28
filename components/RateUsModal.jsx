@@ -41,7 +41,7 @@ export const RateUsModal = ({ isModalVisible, hide }) => {
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
           {renderStars()}
         </View>
-        <TouchableOpacity style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.buttonContainer} onPress={hide} >
           <Text style={styles.buttonText}>Применить</Text>
         </TouchableOpacity>
       </View>
@@ -52,7 +52,8 @@ export const RateUsModal = ({ isModalVisible, hide }) => {
 const styles = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
-    alignItems: 'center',
+        alignItems: 'center',
+        margin: 0,
   },
   modalContent: {
       width: '100%',

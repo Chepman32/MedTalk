@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   modal: {
     justifyContent: "flex-end",
     alignItems: 'center',
+    margin: 0,
   },
   modalContent: {
     width: SCREEN_WIDTH,

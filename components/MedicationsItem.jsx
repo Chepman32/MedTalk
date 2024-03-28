@@ -9,7 +9,7 @@ import cart_white from "../assets/icons/cart_white.png";
 import MockImage1 from '../assets/images/medication1.png';
 import { FlatCarousel } from './FlatCarousel';
 
-export const MedicationsItem = ({ text, icon, type, isFavorite }) => {
+export const MedicationsItem = ({ text, icon, type, isFavorite, showChoosedModal }) => {
     const [favorite, setFavorite] = useState(isFavorite)
 
     return (
@@ -26,7 +26,7 @@ export const MedicationsItem = ({ text, icon, type, isFavorite }) => {
               <TouchableOpacity onPress={() => setFavorite(!favorite)}>
                 <Image style={styles.icon} source={favorite ? Fav : NotFav} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buyButton} >
+            <TouchableOpacity style={styles.buyButton} onPress={showChoosedModal} >
                 <Image style={styles.buyButtonIcon} source={cart_white} />
                 <Text style={styles.buyButtonText}>В корзину</Text>
               </TouchableOpacity>
@@ -67,6 +67,11 @@ const styles = StyleSheet.create({
     resizeMode: "stretch",
     marginRight: SCREEN_WIDTH * 0.01,
   },
+  title: {
+    fontWeight: '600',
+    fontSize: SCREEN_WIDTH * 0.04,
+    lineHeight: SCREEN_WIDTH * 0.04,
+  },
     text: {
         maxWidth: SCREEN_WIDTH * 0.8,
     fontWeight: '400',
@@ -91,8 +96,9 @@ const styles = StyleSheet.create({
   price: {
     maxWidth: SCREEN_WIDTH * 0.8,
     fontWeight: '400',
-    fontSize: 16,
-    lineHeight: 16,
+    fontSize: SCREEN_WIDTH * 0.04,
+    lineHeight: SCREEN_WIDTH * 0.04,
+    fontWeight: "600",
     color: 'rgba(0, 137, 100, 1)',
   },
   buttons: {
@@ -103,6 +109,7 @@ const styles = StyleSheet.create({
   buyButton: {
     width: SCREEN_WIDTH * 0.3,
     height: SCREEN_HEIGHT * 0.04,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     marginTop: SCREEN_WIDTH * 0.15,
@@ -110,8 +117,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buyButtonIcon: {
-    width: SCREEN_WIDTH * 0.01,
-    height: SCREEN_WIDTH * 0.01,
+    width: SCREEN_WIDTH * 0.05,
+    height: SCREEN_WIDTH * 0.05,
+    marginRight: SCREEN_WIDTH * 0.02,
   },
   buyButtonText: {
     maxWidth: SCREEN_WIDTH * 0.8,
