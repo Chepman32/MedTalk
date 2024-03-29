@@ -69,3 +69,11 @@ export const carouselData = [
         isFavorite: true,
     },
 ];
+
+export const pickupPoints = [
+    "ул. Абая, 27",
+    "пр. Назарбаева, 156",
+    "ул. Байзакова, 360",
+    "ул. Байтурсынова, 47",
+    "ул. Кабанбай Батыра, 34"
+]

@@ -32,9 +32,7 @@ const Tab = createBottomTabNavigator();
 
 function HomeStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Medications" screenOptions={({ route }) => ({
-      headerShown: false,
-    })}>
+    <Stack.Navigator initialRouteName="Home" >
       <Stack.Screen name="Home" component={Home} options={{ title: 'Восстановление пароля', }} />
       <Stack.Screen name="PharmacyDetails" component={PharmacyDetails} options={{ title: 'Восстановление пароля', }} />
       <Stack.Screen name="Medications" component={Medications} options={{ title: 'Восстановление пароля', }} />

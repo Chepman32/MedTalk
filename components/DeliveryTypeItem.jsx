@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 
-export const  DeliveryTypeItem = ({title, deliveryProviderIcon, time, setActive, active, link}) => {
+export const  DeliveryTypeItem = ({title, deliveryProviderIcon, time, setActive, active, link, onLink}) => {
   return (
     <TouchableOpacity style={active === title ? styles.activeDeliveryType : styles.deliveryType} onPress={() => setActive(title)}>
                   <View style={styles.deliveryRow}>
@@ -13,10 +13,12 @@ export const  DeliveryTypeItem = ({title, deliveryProviderIcon, time, setActive,
                   deliveryProviderIcon && <Image style={styles.deliveryProviderIcon} source={deliveryProviderIcon}/>
                       }
               </View>
-                  <Text style={ 
+          <TouchableOpacity onPress={onLink}>
+          <Text style={ 
                    link ? styles.linkText : styles.deliveryGreyText}>
                   {time}
                   </Text>
+                  </TouchableOpacity>
               </TouchableOpacity>
   )
 }

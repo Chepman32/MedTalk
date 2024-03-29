@@ -10,12 +10,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {SuccessfulMessage } from '../components/SuccessfulMessage';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { InputContainer } from './InputContainer';
 import { CustomCheckBox } from './CustomCheckBox';
 import Yandex from "../assets/icons/Yandex.png"
 import { DeliveryTypeItem } from './DeliveryTypeItem';
+import { MapComponent } from './MapComponent';
+import { PickupModal } from './PickupModal';
 
 export const OrderConfirmation = () => {
     const [name, setName] = useState('');
@@ -30,6 +31,7 @@ export const OrderConfirmation = () => {
     const [stage, setStage] = useState('');
     const [comment, setComment] = useState('');
     const [deliveryType, setDeliveryType] = useState("")
+    const [isPickupModal, setIsPickupModal] = useState(false)
   return (
       <ScrollView bounces={false}>
           <SafeAreaView style={styles.container}>
@@ -57,12 +59,14 @@ export const OrderConfirmation = () => {
           <InputContainer text="Коментарий" value={comment} setValue={setComment} placeholder={"Коментарий"} multiline />
           </View>
               <CustomCheckBox />
+              <MapComponent/>
               <View style={styles.delivery}>
               <DeliveryTypeItem title={"Экспресс доставка"} deliveryProviderIcon={Yandex} time={"Время от 30-90 мин"} active={deliveryType} setActive={setDeliveryType} />
               <DeliveryTypeItem title={"Курьером аптеки"} time={"Время от 30-90 мин"} active={deliveryType} setActive={setDeliveryType} />
-              <DeliveryTypeItem title={"Самовывоз"} time={"Выбрать пункт выдачи"} active={deliveryType} setActive={setDeliveryType} link/>
+              <DeliveryTypeItem title={"Самовывоз"} time={"Выбрать пункт выдачи"} active={deliveryType} setActive={setDeliveryType} link onLink={() => setIsPickupModal(true)} />
               </View>
-    </SafeAreaView>
+          </SafeAreaView>
+          <PickupModal isModalVisible={isPickupModal} hide={() => setIsPickupModal(false)}/>
       </ScrollView>
   );
 };
