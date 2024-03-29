@@ -1,5 +1,7 @@
+/* eslint-disable quotes */
 import React, {useState} from 'react';
 import {
+    Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -12,6 +14,8 @@ import {SuccessfulMessage } from '../components/SuccessfulMessage';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { InputContainer } from './InputContainer';
 import { CustomCheckBox } from './CustomCheckBox';
+import Yandex from "../assets/icons/Yandex.png"
+import { DeliveryTypeItem } from './DeliveryTypeItem';
 
 export const OrderConfirmation = () => {
     const [name, setName] = useState('');
@@ -25,6 +29,7 @@ export const OrderConfirmation = () => {
     const [driveway, setDriveway] = useState('');
     const [stage, setStage] = useState('');
     const [comment, setComment] = useState('');
+    const [deliveryType, setDeliveryType] = useState("")
   return (
       <ScrollView bounces={false}>
           <SafeAreaView style={styles.container}>
@@ -51,7 +56,12 @@ export const OrderConfirmation = () => {
           <View style={styles.comment}>
           <InputContainer text="Коментарий" value={comment} setValue={setComment} placeholder={"Коментарий"} multiline />
           </View>
-          <CustomCheckBox/>
+              <CustomCheckBox />
+              <View style={styles.delivery}>
+              <DeliveryTypeItem title={"Экспресс доставка"} deliveryProviderIcon={Yandex} time={"Время от 30-90 мин"} active={deliveryType} setActive={setDeliveryType} />
+              <DeliveryTypeItem title={"Курьером аптеки"} time={"Время от 30-90 мин"} active={deliveryType} setActive={setDeliveryType} />
+              <DeliveryTypeItem title={"Самовывоз"} time={"Выбрать пункт выдачи"} active={deliveryType} setActive={setDeliveryType} link/>
+              </View>
     </SafeAreaView>
       </ScrollView>
   );
@@ -80,19 +90,11 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: "space-between"
     },
-  button: {
-    width: SCREEN_WIDTH * 0.95,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 20,
-    backgroundColor: 'rgba(0, 137, 100, 1)',
-    borderRadius: 8,
-  },
-  buttonText: {
-    fontSize: 14,
-    fontWeight: '500',
-    lineHeight: 20,
-    textAlign: 'center',
-    color: '#fff',
-  },
+    checkbox: {
+        marginBottom:  SCREEN_WIDTH * 0.05,
+    },
+    delivery: {
+        width: "100%",
+        marginTop:  SCREEN_WIDTH * 0.05,
+    }
 });
