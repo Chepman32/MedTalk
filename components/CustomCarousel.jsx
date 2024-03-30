@@ -1,14 +1,10 @@
-import React, { useState, useRef } from 'react';
-import { Text, View, SafeAreaView, Image, Dimensions } from 'react-native';
-import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
+import React, { useState } from 'react';
+import { Text, View, Image, Dimensions, FlatList } from 'react-native';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 export const CustomCarousel = ({ items }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const carouselRef = useRef(null);
-
-  const renderItem = ({ item, index }) => (
+  const renderItem = ({ item }) => (
     <View
       style={{
         width: SCREEN_WIDTH * 0.3, // 30% of screen width
@@ -16,8 +12,7 @@ export const CustomCarousel = ({ items }) => {
         backgroundColor: 'rgba(245, 245, 245, 1)',
         borderRadius: 5,
         padding: 10,
-        marginLeft: 10,
-        marginRight: 10,
+        marginHorizontal: 10,
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -36,14 +31,12 @@ export const CustomCarousel = ({ items }) => {
 
   return (
     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-      <Carousel
-        layout="default"
-        ref={carouselRef}
+      <FlatList
         data={items}
-        sliderWidth={SCREEN_WIDTH}
-        itemWidth={SCREEN_WIDTH * 0.3}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={renderItem}
-        onSnapToItem={(index) => setActiveIndex(index)}
+        horizontal
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );

@@ -10,7 +10,6 @@ import { MedicationsItem } from '../components/MedicationsItem';
 import { PharmacyAboutModal } from '../components/PharmacyAboutModal';
 import { PharmacyBranchesModal } from '../components/PharmacyBranchesModal';
 import search from '../assets/icons/search.png';
-import { carouselData } from '../mockData';
 import { carouselItems } from './InsuranceDetails';
 import { RateUsModal } from '../components/RateUsModal';
 import { ContactsModal } from '../components/ContactsModal';
