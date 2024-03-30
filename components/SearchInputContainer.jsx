@@ -14,6 +14,7 @@ export const SearchInputContainer = ({ searchValue, setSearchValue, placeholder 
         onChangeText={setSearchValue}
         style={styles.input}
         placeholder={placeholder}
+        placeholderTextColor={"rgba(158, 158, 158, 1)"}
         textAlignVertical="top"
       />
     </View>

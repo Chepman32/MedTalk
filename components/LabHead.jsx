@@ -11,6 +11,7 @@ import empty_star from "../assets/icons/empty_star.png"
 import time from "../assets/icons/Frame_658501.png"
 import phone from "../assets/icons/Frame_658502.png"
 import geo from "../assets/icons/Frame_658503.png"
+import price from "../assets/icons/price.png"
 import preview1 from "../assets/images/lab2.png"
 import preview2 from "../assets/images/lab3.png"
 import preview3 from "../assets/images/lab4.png"
@@ -18,7 +19,7 @@ import preview4 from "../assets/images/lab5.png"
 import preview5 from "../assets/images/lab6.jpeg"
 
 
-export const LabHead = ({ title, isFavorite, showModal, showContactsModal, showScheduleModal }) => {
+export const LabHead = ({ title, isFavorite, showModal, showContactsModal, showScheduleModal, onPricePress }) => {
     const [favorite, setFavorite] = useState(isFavorite)
 
     return (
@@ -43,6 +44,9 @@ export const LabHead = ({ title, isFavorite, showModal, showContactsModal, showS
                 <Image style={styles.icon} source={phone} />
               </TouchableOpacity>
                 <Image style={styles.icon} source={geo} />
+                <TouchableOpacity onPress={onPricePress}>
+                <Image style={styles.icon} source={price} />
+              </TouchableOpacity>
               </View>
                 </View>
                 <TouchableOpacity onPress={() => setFavorite(!favorite)}>
