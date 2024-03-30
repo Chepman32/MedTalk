@@ -18,8 +18,10 @@ export const LabService = ({title, text, price }) => {
   return (
     <TouchableOpacity style={styles.container} >
           <View style={styles.row} >
+          <Text style={styles.title}>{title} </Text>
+          <Text style={styles.price}>{price} </Text>
+          </View>
           <Text style={styles.text}>{text} </Text>
-      </View>
     </TouchableOpacity>
   );
 };
@@ -40,26 +42,26 @@ const styles = StyleSheet.create({
     elevation: 6,
     },
     title: {
-        fontSize: 14,
-        lineHeight: 17,
-        fontWeight: "600",
+        fontWeight: '400',
+    fontSize: SCREEN_WIDTH * 0.04,
+        lineHeight: SCREEN_WIDTH * 0.05,
         color: "rgba(0, 137, 100, 1)"
       },
   row: {
-    flexDirection: "row",
+      flexDirection: "row",
+      justifyContent: "space-between",
     alignItems: "center"
   },
   text: {
     maxWidth: SCREEN_WIDTH * 0.8,
-    fontWeight: '400',
-    fontSize: 12,
-    color: 'rgba(21, 21, 21, 1)',
-    marginVertical: SCREEN_WIDTH * 0.005,
+    fontWeight: '300',
+    fontSize: SCREEN_WIDTH * 0.04,
+        lineHeight: SCREEN_WIDTH * 0.05,
+    marginVertical: SCREEN_WIDTH * 0.004,
     },
     price: {
-        fontSize: 14,
-        lineHeight: 17,
-        fontWeight: "400",
-        color: "rgba(0, 137, 100, 1)"
+        fontSize: SCREEN_WIDTH * 0.05,
+        lineHeight: SCREEN_WIDTH * 0.06,
+        fontWeight: "600",
       },
 });

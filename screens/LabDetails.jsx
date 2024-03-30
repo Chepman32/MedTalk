@@ -50,7 +50,9 @@ export const LabDetails = () => {
         />
       </View>
       <ScrollView style={{ marginTop: SCREEN_HEIGHT * 0.02 }}>
-      <LabService title={"Фитнес мониторинг"} text={"Основные показатели для выбора физической нагрузки и мониторинга состояния организма во время тренировок."} price={"5000₸"}/>
+              <LabService title={"Фитнес мониторинг"} text={"Основные показатели для выбора физической нагрузки и мониторинга состояния организма во время тренировок."} price={"5000₸"} />
+              <LabService title={"Фитнес мониторинг"} text={"Основные показатели для выбора физической нагрузки и мониторинга состояния организма во время тренировок."} price={"5000₸"} />
+              <LabService title={"Фитнес мониторинг"} text={"Основные показатели для выбора физической нагрузки и мониторинга состояния организма во время тренировок."} price={"5000₸"}/>
       </ScrollView>
       <PharmacyAboutModal isModalVisible={aboutModal} hide={() => setAboutModal(false)} />
       <PharmacyBranchesModal isModalVisible={branchesModal} hide={() => setBranchesModal(false)} />
