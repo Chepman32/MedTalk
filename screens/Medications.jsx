@@ -6,7 +6,7 @@ import filter from '../assets/icons/filter.png';
 import drugStoreIcon from '../assets/icons/drugStore.png';
 import pillIcon from '../assets/icons/Home_icons/pill.png';
 import { MedicationsItem } from '../components/MedicationsItem';
-import { PharmacyItem } from './PharmacyItem';
+import { PharmacyItem } from '../components/PharmacyItem';
 import banner from '../assets/images/banner.png';
 import { MedicationsFilterModal } from '../components/MedicationsFilterModal';
 import { stores } from '../mockData';
@@ -14,7 +14,7 @@ import { ChoosedItemsModal } from '../components/ChoosedItemsModal';
 
 export const Medications = () => {
     const [searchValue, setSearchValue] = useState('');
-    const [activeTab, setActiveTab] = useState('right');
+    const [activeTab, setActiveTab] = useState('left');
     const [isModalVisible, setModalVisible] = useState(false);
     const [choosedModal, setChoosedModal] = useState(false)
 

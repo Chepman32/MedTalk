@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
     Image,
   SafeAreaView,
@@ -17,6 +17,7 @@ import Yandex from "../assets/icons/Yandex.png"
 import { DeliveryTypeItem } from './DeliveryTypeItem';
 import { MapComponent } from './MapComponent';
 import { PickupModal } from './PickupModal';
+import Accordion from './Accordion';
 
 export const OrderConfirmation = () => {
     const [name, setName] = useState('');
@@ -32,6 +33,21 @@ export const OrderConfirmation = () => {
     const [comment, setComment] = useState('');
     const [deliveryType, setDeliveryType] = useState("")
     const [isPickupModal, setIsPickupModal] = useState(false)
+    const [mainInfo, setMainInfo] = useState(false)
+    const [address, setAddress] = useState(false)
+    const [paymentMethod, setPaymentMethod] = useState(false)
+    const verifyAddressFields = useCallback(() => {
+        if (city.trim() && street.trim() && house.trim() && apt.trim() && driveway.trim() && interphone.trim() && stage.trim()) {
+            setAddress(true)
+        }
+        else {
+            setAddress(false)
+        }
+    }, [apt, city, driveway, house, interphone, stage, street])
+
+    useEffect(() => {
+        verifyAddressFields()
+    }, [verifyAddressFields])
   return (
       <ScrollView bounces={false}>
           <SafeAreaView style={styles.container}>
@@ -41,9 +57,7 @@ export const OrderConfirmation = () => {
           <InputContainer text="Имя" value={name} setValue={setName} isRequired placeholder={"Имя"} />
           <InputContainer text="Номер телефона" value={phone} setValue={setPhone} placeholder={"+000 000 0000 *"} />
           <InputContainer text="Дополнительный номер телефона *" value={secondPhone} setValue={setSecondPhone} placeholder={"+000 000 0000 *"} />
-          <Text style={styles.boldText}>
-          Адрес покупателя
-          </Text>
+              <Accordion index={1} title="Адрес покупателя" isCompleted={address} >
           <InputContainer text="Город" value={city} setValue={setCity} placeholder={"Алматы"} />
           <InputContainer text="Улица" value={street} setValue={setStreet} placeholder={"Байзакова"} />
               <View style={styles.row}>
@@ -57,8 +71,9 @@ export const OrderConfirmation = () => {
           </View>
           <View style={styles.comment}>
           <InputContainer text="Коментарий" value={comment} setValue={setComment} placeholder={"Коментарий"} multiline />
-          </View>
-              <CustomCheckBox />
+                  </View>
+                  <CustomCheckBox />
+          </Accordion>
               <MapComponent/>
               <View style={styles.delivery}>
               <DeliveryTypeItem title={"Экспресс доставка"} deliveryProviderIcon={Yandex} time={"Время от 30-90 мин"} active={deliveryType} setActive={setDeliveryType} />

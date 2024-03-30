@@ -7,7 +7,7 @@ import close from '../assets/icons/close.png';
 import { useNavigation } from '@react-navigation/native';
 import filter from '../assets/icons/filter.png';
 import { stores } from '../mockData';
-import { PharmacyItem } from '../screens/PharmacyItem';
+import { PharmacyItem } from './PharmacyItem';
 
 export const PharmacyBranchesModal = ({ isModalVisible, hide }) => {
   const [selected, setSelected] = useState("open")

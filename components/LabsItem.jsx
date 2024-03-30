@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import Fav from "../assets/icons/Frame_658375.png";
 import NotFav from "../assets/icons/favorite.png";
-import MockImage from "../assets/images/Rectangle__330.png"
+import MockImage from "../assets/images/lab1.png"
 import star from "../assets/icons/star.png"
 import empty_star from "../assets/icons/empty_star.png"
 import time from "../assets/icons/Frame_658501.png"
@@ -11,14 +11,14 @@ import phone from "../assets/icons/Frame_658502.png"
 import geo from "../assets/icons/Frame_658503.png"
 import { useNavigation } from '@react-navigation/native';
 
-export const InsuranceItem = ({ text, icon, type, isFavorite }) => {
+export const LabsItem = ({ text, icon, type, isFavorite }) => {
   const [favorite, setFavorite] = useState(isFavorite)
 
   const navigation = useNavigation()
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("InsuranceDetails")} >
-      <Text style={styles.title}>Interteach</Text>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("LabDetails")} >
+      <Text style={styles.title}>ImmunoTest</Text>
       <View style={styles.row} >
         <Image style={styles.image} source={MockImage} />
         <View style={styles.content} >
@@ -51,8 +51,8 @@ export const InsuranceItem = ({ text, icon, type, isFavorite }) => {
         </View>
       </View>
       <View style={styles.footer} >
-        <Text style={styles.boldText}>Программы:</Text>
-        <Text style={styles.text}>Базовая, Мой доктор, На дом, Стандарт...</Text>
+        <Text style={styles.boldText}>Специализация:</Text>
+        <Text style={styles.text}>Ковид-19 тест, Лаборпторные анализ...</Text>
       </View>
     </TouchableOpacity>
   );

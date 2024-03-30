@@ -136,7 +136,7 @@ export const Home = () => {
        <Homeitem text={'Медикаменты и аптеки'} icon={drugs} onPress={() => navigation.navigate("Medications")} />
        <Homeitem text={'Врачи'} icon={doctor} />
        <Homeitem text={'Выезд на дом и Онлайн консультация'} icon={car} onPress={toggleModal} />
-       <Homeitem text={'Лаборатории'} icon={labs} onPress={toggleModal} />
+       <Homeitem text={'Лаборатории'} icon={labs} onPress={() => navigation.navigate("Labs")} />
        <Homeitem text={'Стоматологии'} icon={dentist} onPress={toggleModal} />
        <Homeitem text={'Ветеринарные клиники'} icon={pets} onPress={toggleModal} />
        <Homeitem text={'Медицинское оборудование'} icon={tools} onPress={toggleModal} />

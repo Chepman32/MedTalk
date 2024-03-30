@@ -26,6 +26,8 @@ import { ProductCard } from './screens/ProductCard';
 import { Medications } from './screens/Medications';
 import { PharmacyDetails } from './screens/PharmacyDetails';
 import { OrderConfirmation } from './components/OrderConfirmation';
+import { Labs } from './screens/Labs';
+import { LabDetails } from './screens/LabDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,9 +37,11 @@ function HomeStackNavigator() {
     <Stack.Navigator initialRouteName="Home" >
       <Stack.Screen name="Home" component={Home} options={{ title: 'Восстановление пароля', }} />
       <Stack.Screen name="PharmacyDetails" component={PharmacyDetails} options={{ title: 'Восстановление пароля', }} />
-      <Stack.Screen name="Medications" component={Medications} options={{ title: 'Восстановление пароля', }} />
+      <Stack.Screen name="Medications" component={Medications} options={{ title: 'Медикаменты и аптеки', }} />
       <Stack.Screen name="ProductCard" component={ProductCard} options={{ title: 'Восстановление пароля', }} />
-      <Stack.Screen name="InsuranceCatalog" component={InsuranceCatalog} options={{ title: 'Восстановление пароля', }} />
+      <Stack.Screen name="Labs" component={Labs} options={{ title: 'Лаборатории', }} />
+      <Stack.Screen name="LabDetails" component={LabDetails} options={{ title: 'Лаборатории', }} />
+      <Stack.Screen name="InsuranceCatalog" component={InsuranceCatalog} options={{ title: 'Медицинское страхование', }} />
       <Stack.Screen name="InsuranceDetails" component={InsuranceDetails} options={{ title: 'Медицинское страхование',  }} />
       <Stack.Screen name="PasswordRecover" component={PasswordRecover} options={{ title: 'Восстановление пароля' }} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} options={{ title: 'Смена пароля', headerLeft: null }} />
