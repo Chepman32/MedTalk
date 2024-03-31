@@ -8,9 +8,9 @@ import { useNavigation } from '@react-navigation/native';
 import filter from '../assets/icons/filter.png';
 import { stores } from '../mockData';
 import { PharmacyItem } from './PharmacyItem';
+import { LabsItem } from './LabsItem';
 
-export const PharmacyBranchesModal = ({ isModalVisible, hide }) => {
-  const [selected, setSelected] = useState("open")
+export const LabBranchesModal = ({ isModalVisible, hide }) => {
   return (
     <Modal
       isVisible={isModalVisible}
@@ -28,13 +28,7 @@ export const PharmacyBranchesModal = ({ isModalVisible, hide }) => {
               </View>
               <ScrollView>
               {
-                            stores.length ? stores.map((s, index) => <PharmacyItem
-                                key={s.title + index} title={s.text}
-                                image={s.image}
-                                address={s.address}
-                                rating={s.rating}
-                                isFavorite={s.isFavorite} contacts={s.contacts}
-                            />)
+                      stores.length ? stores.map((s, index) => <LabsItem key={index} />)
                             : null
                         }
               </ScrollView>

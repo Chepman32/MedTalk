@@ -34,9 +34,13 @@ const Tab = createBottomTabNavigator();
 
 function HomeStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Home" >
-      <Stack.Screen name="Home" component={Home} options={{ title: 'Восстановление пароля', }} />
-      <Stack.Screen name="PharmacyDetails" component={PharmacyDetails} options={{ title: 'Восстановление пароля', }} />
+    <Stack.Navigator initialRouteName="Home" screenOptions={{
+      headerBackTitleVisible: false,
+      headerTintColor: '#000',
+      headerBackVisible: true,
+    }} >
+      <Stack.Screen name="Home" component={Home} options={{ title: 'Главная', headerShown: false }} />
+      <Stack.Screen name="PharmacyDetails" component={PharmacyDetails} options={{ title: 'Медикаменты и аптеки', }} />
       <Stack.Screen name="Medications" component={Medications} options={{ title: 'Медикаменты и аптеки', }} />
       <Stack.Screen name="ProductCard" component={ProductCard} options={{ title: 'Восстановление пароля', }} />
       <Stack.Screen name="Labs" component={Labs} options={{ title: 'Лаборатории', }} />

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { CustomCarousel } from '../components/CustomCarousel';
 import image1 from '../assets/images/Insurance/pic.png';
@@ -18,6 +18,7 @@ import { ChoosedItemsModal } from '../components/ChoosedItemsModal';
 import { LabHead } from '../components/LabHead';
 import { LabService } from '../components/LabService';
 import { SearchInputContainer } from '../components/SearchInputContainer';
+import { LabBranchesModal } from '../components/LabBranchesModal';
 
 export const LabDetails = () => {
  const [aboutModal, setAboutModal] = useState(false);
@@ -51,7 +52,15 @@ export const LabDetails = () => {
          showContactsModal={() => setIsContactsModal(true)}
          showScheduleModal={() => setScheduleModal(true)}
          onPricePress={scrollToView}
-       />
+             />
+             <View style={styles.tabs}>
+                 <TouchableOpacity style={styles.tabsItem} onPress={() => setAboutModal(true)}>
+                     <Text>О нас</Text>
+                 </TouchableOpacity>
+                 <TouchableOpacity style={styles.tabsItem} onPress={() => setBranchesModal(true)}>
+                     <Text>Наши филиалы</Text>
+             </TouchableOpacity>
+             </View>
        <View style={{ height: 250 }}>
          <CustomCarousel items={carouselItems} />
        </View>
@@ -77,7 +86,7 @@ export const LabDetails = () => {
          ))}
        </View>
        <PharmacyAboutModal isModalVisible={aboutModal} hide={() => setAboutModal(false)} />
-       <PharmacyBranchesModal isModalVisible={branchesModal} hide={() => setBranchesModal(false)} />
+       <LabBranchesModal isModalVisible={branchesModal} hide={() => setBranchesModal(false)}/>
        <RateUsModal isModalVisible={rateModal} hide={() => setRateModal(false)} />
        <ContactsModal isModalVisible={isContactsModal} hide={() => setIsContactsModal(false)} />
        <ScheduleModal isModalVisible={scheduleModal} hide={() => setScheduleModal(false)} />
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
    flexDirection: "row",
    justifyContent: "space-between",
    alignItems: "center",
-   marginTop: SCREEN_HEIGHT * 0.02,
+   marginVertical: SCREEN_HEIGHT * 0.02,
  },
  tabsItem: {
    width: "48%",

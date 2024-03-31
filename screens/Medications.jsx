@@ -16,25 +16,26 @@ export const Medications = () => {
     const [searchValue, setSearchValue] = useState('');
     const [activeTab, setActiveTab] = useState('left');
     const [isModalVisible, setModalVisible] = useState(false);
-    const [choosedModal, setChoosedModal] = useState(false)
-
+    const [choosedModal, setChoosedModal] = useState(false);
 
     const filteredData = stores.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase()));
 
     const rightButtonStyle = {
         borderTopRightRadius: 8,
         borderBottomRightRadius: 8,
+        color: "#000"
     };
 
     const leftButtonStyle = {
         borderTopLeftRadius: 8,
         borderBottomLeftRadius: 8,
+        color: "#000"
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <TouchableOpacity onPress={() => setModalVisible(true)}>
-            <Image source={filter} style={styles.filterIcon} />
+                <Image source={filter} style={styles.filterIcon} />
             </TouchableOpacity>
             <View style={styles.tabs}>
                 <TouchableOpacity
@@ -42,7 +43,7 @@ export const Medications = () => {
                     onPress={() => setActiveTab('left')}
                 >
                     <Image source={pillIcon} style={styles.tabIcon} />
-                    <Text style={activeTab === 'left' ? styles.activeTabText : styles.activeTabText}>
+                    <Text style={activeTab === 'left' ? styles.activeTabText : styles.inActiveTabText}>
                         Медикаменты
                     </Text>
                 </TouchableOpacity>
@@ -51,37 +52,36 @@ export const Medications = () => {
                     onPress={() => setActiveTab('right')}
                 >
                     <Image source={drugStoreIcon} style={styles.tabIcon} />
-                    <Text style={activeTab === 'right' ? styles.activeTabText : styles.activeTabText}>
+                    <Text style={activeTab === 'right' ? styles.activeTabText : styles.inActiveTabText}>
                         Аптеки
                     </Text>
                 </TouchableOpacity>
             </View>
             <SearchInputContainer searchValue={searchValue} setSearchValue={setSearchValue} placeholder={'Поиск медикаментов'} />
 
-            {
-                activeTab === 'left'
-                ?
+            {activeTab === 'left' ? (
                 <ScrollView>
-            <MedicationsItem showChoosedModal={() => setChoosedModal(true)} />
-            <MedicationsItem showChoosedModal={() => setChoosedModal(true)}/>
-                    </ScrollView>
-                    :
-                    <ScrollView>
-            {
-                            stores.length ? filteredData.map((s, index) => <PharmacyItem
-                                key={s.title + index} title={s.text}
-                                image={s.image}
-                                address={s.address}
-                                rating={s.rating}
-                                isFavorite={s.isFavorite} contacts={s.contacts}
-                            />)
-                            : null
-                        }
-            </ScrollView>
-            }
+                    <MedicationsItem showChoosedModal={() => setChoosedModal(true)} />
+                    <MedicationsItem showChoosedModal={() => setChoosedModal(true)} />
+                </ScrollView>
+            ) : (
+                <ScrollView>
+                    {stores.length ? filteredData.map((s, index) => (
+                        <PharmacyItem
+                            key={s.title + index}
+                            title={s.text}
+                            image={s.image}
+                            address={s.address}
+                            rating={s.rating}
+                            isFavorite={s.isFavorite}
+                            contacts={s.contacts}
+                        />
+                    )) : null}
+                </ScrollView>
+            )}
             <Image style={styles.banner} source={banner} resizeMode="contain" />
             <MedicationsFilterModal isModalVisible={isModalVisible} hide={() => setModalVisible(false)} />
-            <ChoosedItemsModal isModalVisible={choosedModal} hide={() => setChoosedModal(false)}/>
+            <ChoosedItemsModal isModalVisible={choosedModal} hide={() => setChoosedModal(false)} />
         </SafeAreaView>
     );
 };
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     },
     inActiveTab: {
         backgroundColor: "#fff",
+        color: "#000"
     },
     tabIcon: {
         width: SCREEN_WIDTH * 0.05,
@@ -130,14 +131,14 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 17,
         fontWeight: "400",
-        color: "#fff",
+        color: "#000",
     },
     banner: {
-        width:"100%",
-      height: SCREEN_HEIGHT * 0.12,
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    marginBottom: 16,
-  },
+        width: "100%",
+        height: SCREEN_HEIGHT * 0.12,
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        marginBottom: 16,
+    },
 });

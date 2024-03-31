@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TextInput, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, SafeAreaView, TextInput, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { FavoriteItem } from './FavoriteItem';
@@ -11,6 +11,8 @@ import noFavorites from '../assets/icons/noFavorites.png';
 import { InsuranceItem } from '../components/InsuranceItem';
 import { SearchInputContainer } from '../components/SearchInputContainer';
 import { LabsItem } from '../components/LabsItem';
+import filter from '../assets/icons/filter.png';
+import { LabFilterModal } from '../components/LabFilterModal';
 
 export const data = [
     {
@@ -40,18 +42,21 @@ export const data = [
 ];
 
 export const Labs = () => {
+    const [isModalVisible, setModalVisible] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-
-    const filteredData = data.filter(item => item.text.toLowerCase().includes(searchValue.toLowerCase()));
 
     return (
         <SafeAreaView style={styles.container}>
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <Image source={filter} style={styles.filterIcon} />
+            </TouchableOpacity>
             <SearchInputContainer searchValue={searchValue} setSearchValue={setSearchValue} placeholder={"Найти врача"} />
             <ScrollView >
                 <View style={styles.main} >
                 <LabsItem/>
             </View>
             </ScrollView>
+            <LabFilterModal isModalVisible={isModalVisible} hide={() => setModalVisible(false)}/>
         </SafeAreaView>
     );
 };
@@ -61,8 +66,11 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
         flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: SCREEN_HEIGHT * 0.05,
+    },
+    filterIcon: {
+        width: SCREEN_WIDTH * 0.1,
+        height: SCREEN_WIDTH * 0.1,
+        marginBottom: SCREEN_WIDTH * 0.05,
     },
     main: {
         width: SCREEN_WIDTH,
