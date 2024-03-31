@@ -144,7 +144,10 @@ const styles = StyleSheet.create({
  optionText: {
    fontSize: 16,
  },
- selectedOption: {
-   backgroundColor: 'rgba(0, 137, 100, 0.2)',
+  selectedOption: {
+   paddingVertical: SCREEN_HEIGHT * 0.01,
+    backgroundColor: 'rgba(245, 245, 245, 1)',
+    overflow: "hidden",
+    borderRadius: SCREEN_HEIGHT * 0.02,
  },
 });

@@ -1,18 +1,15 @@
-import { View, Text, SafeAreaView, TextInput, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, SafeAreaView, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
-import { FavoriteItem } from './FavoriteItem';
-import search from '../assets/icons/search.png';
 import MockImage1 from '../assets/images/medication1.png';
 import MockImage2 from '../assets/images/Rectangle_329.png';
 import MockImage3 from '../assets/images/Rectangle_472.png';
 import MockImage4 from '../assets/images/image_150.png';
-import noFavorites from '../assets/icons/noFavorites.png';
-import { InsuranceItem } from '../components/InsuranceItem';
 import { SearchInputContainer } from '../components/SearchInputContainer';
 import { LabsItem } from '../components/LabsItem';
 import filter from '../assets/icons/filter.png';
 import { LabFilterModal } from '../components/LabFilterModal';
+import banner from '../assets/images/banner.png';
 
 export const data = [
     {
@@ -56,6 +53,7 @@ export const Labs = () => {
                 <LabsItem/>
             </View>
             </ScrollView>
+            <Image style={styles.banner} source={banner} resizeMode="contain" />
             <LabFilterModal isModalVisible={isModalVisible} hide={() => setModalVisible(false)}/>
         </SafeAreaView>
     );
@@ -80,34 +78,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
     },
-  mainText: {
-      marginTop: SCREEN_HEIGHT * 0.03,
-      paddingBottom: SCREEN_HEIGHT * 0.035,
-      textAlign: 'center',
-    fontWeight: '400',
-    fontSize: 14,
-    lineHeight: 18,
-    color: 'rgba(136, 136, 136, 1)',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    width: SCREEN_WIDTH * 0.95,
-    height: SCREEN_HEIGHT * 0.035,
-    marginVertical: SCREEN_HEIGHT * 0.005,
-  },
-  icon: {
-    marginLeft: SCREEN_WIDTH * 0.02,
-  },
-  input: {
-    flex: 1,
-    paddingLeft: SCREEN_WIDTH * 0.02,
+    banner: {
+        width: "100%",
+        height: SCREEN_HEIGHT * 0.12,
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        marginBottom: 16,
     },
-    image: {
-        width: SCREEN_WIDTH * 0.2,
-        height: SCREEN_WIDTH * 0.2,
-        marginTop: SCREEN_WIDTH * 0.07,
-      },
 });
