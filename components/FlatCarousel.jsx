@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, Image, View, Dimensions } from 'react-native';
+import { SCREEN_HEIGHT } from '../constants';
 
 const { width } = Dimensions.get('window');
 
@@ -16,7 +17,7 @@ export const FlatCarousel = () => {
       source={item}
       style={{
         width: width,
-        height: 300,
+        height: SCREEN_HEIGHT * 0.3,
         resizeMode: "contain"
       }}
     />

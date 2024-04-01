@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-import React from 'react';
+import React, { useState } from 'react';
 import {View, SafeAreaView, Text, StyleSheet, ScrollView, TouchableOpacity, Image} from 'react-native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import product from "../assets/images/Rectangle__329.png"
@@ -9,8 +9,14 @@ import message_black from "../assets/icons/message_black.png"
 import cart_white from "../assets/icons/cart_white.png"
 import { FlatCarousel } from '../components/FlatCarousel';
 import Accordion from '../components/Accordion';
+import { ChoosedItemsModal } from '../components/ChoosedItemsModal';
+import Fav from "../assets/icons/Frame_658375.png";
+import NotFav from "../assets/icons/favorite.png";
 
 export const MedicationScreen = () => {
+  const [choosedModal, setChoosedModal] = useState(false);
+  const [favorite, setFavorite] = useState(false)
+
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
@@ -58,11 +64,15 @@ export const MedicationScreen = () => {
           <Image style={styles.buttonIcon} source={message_black}/>
           <Text style={styles.greyButtonText} >Есть вопрос?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.greenButton}>
+        <TouchableOpacity style={styles.greenButton} onPress={() => setChoosedModal(true)}>
         <Image style={styles.buttonIcon} source={cart_white}/>
           <Text style={styles.greenButtonText} >Купить</Text>
         </TouchableOpacity>
-      </View>
+        </View>
+        <TouchableOpacity onPress={() => setFavorite(!favorite)} style={styles.favButton} >
+                <Image style={styles.icon} source={favorite ? Fav : NotFav} />
+              </TouchableOpacity>
+        <ChoosedItemsModal isModalVisible={choosedModal} hide={() => setChoosedModal(false)} />
     </SafeAreaView>
     </ScrollView>
   );
@@ -73,12 +83,23 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: SCREEN_HEIGHT * 0.01,
     paddingHorizontal: SCREEN_WIDTH * 0.05,
-      backgroundColor: "#fff",
+    backgroundColor: "#fff",
+      position: "relative",
   },
   title: {
     fontSize: SCREEN_WIDTH * 0.05,
     lineHeight: SCREEN_WIDTH * 0.06,
     fontWeight: "600"
+  },
+  favButton: {
+    position: "absolute",
+    top: SCREEN_WIDTH * 0.1,
+    right: SCREEN_WIDTH * 0.1,
+    paddingVertical: SCREEN_WIDTH * 0.015,
+    paddingHorizontal: SCREEN_WIDTH * 0.03,
+    backgroundColor: "rgba(245, 245, 245, 1)",
+    overflow: "hidden",
+    borderRadius: SCREEN_WIDTH * 0.03,
   },
   icon: {
     width: 20,
