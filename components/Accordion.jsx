@@ -38,7 +38,15 @@ const styles = StyleSheet.create({
     },
   accordionHeader: {
       flexDirection: 'row',
-      justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: SCREEN_WIDTH * 0.03,
+    marginVertical: SCREEN_WIDTH * 0.02,
+    paddingVertical: SCREEN_WIDTH * 0.01,
+        borderTopWidth: 1,
+        borderTopColor: "rgba(219, 219, 219, 1)",
+        borderBottomWidth: 1,
+        borderBottomColor: "rgba(219, 219, 219, 1)"
     },
     icon: {
         width: SCREEN_WIDTH * 0.05,

@@ -11,7 +11,7 @@ export const InputContainer = ({ text, type, value, setValue, placeholder, isReq
   };
 
   return (
-    <View style={{...styles.container, ...style}}>
+    <View style={styles.container}>
       <View style={styles.row}>
         <Text style={styles.text}>
           {text} {isRequired && <Text style={styles.required}>* </Text>}
@@ -24,7 +24,12 @@ export const InputContainer = ({ text, type, value, setValue, placeholder, isReq
           setValue(text);
           type === "name" && validateInput(text) || type === "secondName" && validateInput(text);
         }}
-        style={[{...styles.input, ...style}, !isValid && styles.inputError]} // Apply error style if input is not valid
+        style={[
+          styles.input,
+          type === "specificType" && { width: SCREEN_WIDTH * 0.4 }, // Apply custom width if type is "specificType"
+          style, // Apply additional custom styles
+          !isValid && styles.inputError // Apply error style if input is not valid
+        ]}
         placeholder={placeholder}
         textAlignVertical="top"
         placeholderTextColor={"#8a8780"}

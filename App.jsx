@@ -28,6 +28,7 @@ import { PharmacyDetails } from './screens/PharmacyDetails';
 import { OrderConfirmation } from './components/OrderConfirmation';
 import { Labs } from './screens/Labs';
 import { LabDetails } from './screens/LabDetails';
+import { CardDetails } from './components/CardDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -93,9 +94,10 @@ function FavoriteStackNavigator() {
 
 function CartStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="OrderConfirmation" >
+    <Stack.Navigator initialRouteName="CardDetails" >
       <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
       <Stack.Screen name="OrderConfirmation" component={OrderConfirmation} options={{ headerShown: false }} />
+      <Stack.Screen name="CardDetails" component={CardDetails} options={{ title: 'Оплата', }} />
     </Stack.Navigator>
   );
 }
