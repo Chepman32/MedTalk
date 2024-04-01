@@ -15,7 +15,9 @@ const Accordion = ({ index, title, children, isCompleted }) => {
         style={styles.accordionHeader}
         onPress={() => setIsCollapsed(!isCollapsed)}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={isCompleted ? styles.filledNumber : styles.number}>{index}</Text>
+              {
+                index && <Text style={isCompleted ? styles.filledNumber : styles.number}>{index}</Text>
+              }
               <Text style={styles.boldText}>{title}</Text>
               </View>
               <Image style={styles.icon} source={isCollapsed ? down : up}/>

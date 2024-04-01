@@ -8,12 +8,15 @@ import NotFav from "../assets/icons/favorite.png";
 import cart_white from "../assets/icons/cart_white.png";
 import MockImage1 from '../assets/images/medication1.png';
 import { FlatCarousel } from './FlatCarousel';
+import { useNavigation } from '@react-navigation/native';
 
 export const MedicationsItem = ({ text, icon, type, isFavorite, showChoosedModal }) => {
-    const [favorite, setFavorite] = useState(isFavorite)
+  const [favorite, setFavorite] = useState(isFavorite)
+  
+  const navigation = useNavigation()
 
     return (
-    <TouchableOpacity style={styles.container} >
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("MedicationScreen")} >
         <View style={styles.row} >
           <Image style={styles.image} source={MockImage1} />
           <View style={styles.content} >

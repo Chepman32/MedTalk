@@ -7,22 +7,52 @@ import star from "../assets/icons/star.png"
 import empty_star from "../assets/icons/empty_star.png"
 import message_black from "../assets/icons/message_black.png"
 import cart_white from "../assets/icons/cart_white.png"
+import { FlatCarousel } from '../components/FlatCarousel';
+import Accordion from '../components/Accordion';
 
-export const ProductCard = () => {
+export const MedicationScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>
-      MINDRAY BeneHeart D6
-      </Text>
+    <ScrollView>
+      <SafeAreaView style={styles.container}>
+      <FlatCarousel/>
       <View style={styles.row}>
-        <Text style={styles.boldText}>В наличии:</Text>
-        <Text style={styles.mainText}>Есть</Text>
-      </View>
-      <Text style={styles.boldText}>Описание</Text>
-      <Text style={styles.greyText}>
-      MINDRAY BeneHeart D6 - компактная, прочная
-и эргономичная конструкция хорошо приспособлена к эксплуатации в экстренных ситуациях. 
-      </Text>
+      <Text style={styles.title}>
+      Парацетамол
+        </Text>
+        <View>
+          <Text style={styles.price}>1 200т</Text>
+          <Text style={styles.oldPrice}>1 500т</Text>
+        </View>
+        </View>
+        <View style={styles.row}>
+        <View >
+          <Text style={styles.greyText}>Аптек</Text>
+          <Text style={styles.mainText}>1000+</Text>
+          </View>
+          <View >
+          <Text style={styles.greyText}>Форма</Text>
+          <Text style={styles.mainText}>Таблетки</Text>
+          </View>
+          <View >
+          <Text style={styles.greyText}>Доза</Text>
+          <Text style={styles.mainText}>200 мг / 500 мг</Text>
+        </View>
+        </View>
+        <View style={styles.row}>
+        <Accordion title={"Описание"} />
+        </View>
+        <View style={styles.row}>
+        <Accordion title={"Фармакокинетика"} />
+        </View>
+        <View style={styles.row}>
+        <Accordion title={"Режим дозирования"}/>
+        </View>
+        <View style={styles.row}>
+        <Accordion title={"Состав"} />
+        </View>
+        <View style={styles.row}>
+        <Accordion title={"Условия хранения"}/>
+        </View>
       <View style={styles.buttons}>
         <TouchableOpacity style={styles.greyButton}>
           <Image style={styles.buttonIcon} source={message_black}/>
@@ -34,6 +64,7 @@ export const ProductCard = () => {
         </TouchableOpacity>
       </View>
     </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -45,8 +76,8 @@ const styles = StyleSheet.create({
       backgroundColor: "#fff",
   },
   title: {
-    fontSize: 16,
-    lineHeight: 18,
+    fontSize: SCREEN_WIDTH * 0.05,
+    lineHeight: SCREEN_WIDTH * 0.06,
     fontWeight: "600"
   },
   icon: {
@@ -56,29 +87,42 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    alignItems: "center"
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: SCREEN_WIDTH * 0.03,
+    borderTopWidth: 1,
+    borderColor: "rgba(245, 245, 245, 1)"
   },
-  boldText: {
-    marginRight: SCREEN_WIDTH * 0.02,
-    fontSize: 14,
+  greyText: {
+    fontSize: SCREEN_WIDTH * 0.03,
+    lineHeight: SCREEN_WIDTH * 0.04,
     fontWeight: "600",
-    lineHeight: 14,
+    color: "rgba(136, 136, 136, 1)"
 },
   mainText: {
+    marginTop: SCREEN_WIDTH * 0.03,
     fontWeight: '400',
-    fontSize: 12,
-    lineHeight: 15,
+    fontSize: SCREEN_WIDTH * 0.04,
+    lineHeight: SCREEN_WIDTH * 0.04,
     color: 'rgba(21, 21, 21, 1)',
+  },
+  price: {
+    fontWeight: '500',
+    fontSize: SCREEN_WIDTH * 0.05,
+    lineHeight: SCREEN_WIDTH * 0.05,
+    color: 'rgba(0, 137, 100, 1)',
+  },
+  oldPrice: {
+    fontWeight: '400',
+    fontSize: SCREEN_WIDTH * 0.04,
+    lineHeight: SCREEN_WIDTH * 0.06,
+    textDecorationLine: "line-through",
+    color: 'rgba(136, 136, 136, 1)',
+    
   },
   buttons: {
     flexDirection: "row",
     justifyContent: "space-between"
-  },
-  greyText: {
-    fontWeight: '400',
-    fontSize: 12,
-    lineHeight: 16,
-    color: 'rgba(136, 136, 136, 1)',
   },
   greyButton: {
     width: SCREEN_WIDTH * 0.43,

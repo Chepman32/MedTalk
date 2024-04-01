@@ -22,7 +22,7 @@ import { PasswordSuccessfulChanged } from './screens/PasswordSuccessfulChanged';
 import { ChooseCity } from './screens/ChooseCity';
 import { InsuranceDetails } from './screens/InsuranceDetails';
 import { InsuranceCatalog } from './screens/InsuranceCatalog';
-import { ProductCard } from './screens/ProductCard';
+import { MedicationScreen } from './screens/MedicationScreen';
 import { Medications } from './screens/Medications';
 import { PharmacyDetails } from './screens/PharmacyDetails';
 import { OrderConfirmation } from './components/OrderConfirmation';
@@ -42,7 +42,7 @@ function HomeStackNavigator() {
       <Stack.Screen name="Home" component={Home} options={{ title: 'Главная', headerShown: false }} />
       <Stack.Screen name="PharmacyDetails" component={PharmacyDetails} options={{ title: 'Медикаменты и аптеки', }} />
       <Stack.Screen name="Medications" component={Medications} options={{ title: 'Медикаменты и аптеки', }} />
-      <Stack.Screen name="ProductCard" component={ProductCard} options={{ title: 'Восстановление пароля', }} />
+      <Stack.Screen name="MedicationScreen" component={MedicationScreen} options={{ title: 'Восстановление пароля', }} />
       <Stack.Screen name="Labs" component={Labs} options={{ title: 'Лаборатории', }} />
       <Stack.Screen name="LabDetails" component={LabDetails} options={{ title: 'Лаборатории', }} />
       <Stack.Screen name="InsuranceCatalog" component={InsuranceCatalog} options={{ title: 'Медицинское страхование', }} />

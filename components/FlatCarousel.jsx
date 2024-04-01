@@ -1,57 +1,74 @@
-import React, { useState, useRef } from 'react';
-import { Text, View, SafeAreaView, Image } from 'react-native';
-import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
-import MockImage from '../assets/images/Rectangle__330.png';
-import { SCREEN_WIDTH } from '../constants';
+import React, { useState } from 'react';
+import { FlatList, StyleSheet, Image, View, Dimensions } from 'react-native';
 
-export const FlatCarousel = ({ items }) => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [carouselScrolling, setCarouselScrolling] = useState(false);
-    const carouselRef = useRef(null);
-  
-    const renderItem = ({ item, index }) => (
-      <View style={{
-        backgroundColor: 'rgba(245, 245, 245, 1)',
-        borderRadius: 5,
-        height: 250,
-        padding: 50,
-        marginLeft: 25,
-        marginRight: 25,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-        <Image
-          style={{
-            maxWidth: '100%',
-            maxHeight: 150,
-          }}
-          source={MockImage} resizeMode="contain" />
-        <Text>{item.text}</Text>
+const { width } = Dimensions.get('window');
+
+const images = [
+  require('../assets/images/medication1.png'),
+  require('../assets/images/medication2.jpeg'),
+];
+
+export const FlatCarousel = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const renderItem = ({ item, index }) => (
+    <Image
+      source={item}
+      style={{
+        width: width,
+        height: 300,
+        resizeMode: "contain"
+      }}
+    />
+  );
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={images}
+        renderItem={renderItem}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={(event) => {
+          const newIndex = Math.round(event.nativeEvent.contentOffset.x / width);
+          setActiveIndex(newIndex);
+        }}
+      />
+
+      <View style={styles.indicatorContainer}>
+        {images.map((_, index) => (
+          <View
+            key={index}
+            style={[
+              styles.indicator,
+              index === activeIndex ? styles.activeIndicator : null,
+            ]}
+          />
+        ))}
       </View>
-    );
-  
-    const handleScrollBegin = () => {
-      setCarouselScrolling(true);
-    };
-  
-    const handleScrollEnd = () => {
-      setCarouselScrolling(false);
-    };
-  
-    return (
-      <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-        <Carousel
-          layout="default"
-          ref={carouselRef}
-          data={items}
-          sliderWidth={SCREEN_WIDTH}
-          itemWidth={SCREEN_WIDTH * 0.8}
-          renderItem={renderItem}
-          onSnapToItem={(index) => setActiveIndex(index)}
-          onScrollBeginDrag={handleScrollBegin}
-          onScrollEndDrag={handleScrollEnd}
-          scrollEnabled={!carouselScrolling}
-        />
-      </View>
-    );
-  };
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  indicatorContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  indicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'gray',
+    marginHorizontal: 4,
+  },
+  activeIndicator: {
+    backgroundColor: 'black',
+  },
+});
