@@ -29,6 +29,7 @@ import { OrderConfirmation } from './components/OrderConfirmation';
 import { Labs } from './screens/Labs';
 import { LabDetails } from './screens/LabDetails';
 import { CardDetails } from './components/CardDetails';
+import PaymentResult from './screens/PaymentResult';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -59,6 +60,33 @@ function HomeStackNavigator() {
   );
 }
 
+function FavoriteStackNavigator() {
+  return (
+    <Stack.Navigator initialRouteName="MoreScreen" screenOptions={({ route }) => ({
+      headerBackTitleVisible: false,
+      headerTintColor: '#000',
+      headerBackVisible: true,
+      headerShown: route.name !== 'Другое',
+    })}>
+      <Stack.Screen name="Favorite" component={Favorite} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  );
+}
+
+function CartStackNavigator() {
+  return (
+    <Stack.Navigator initialRouteName="CardDetails" screenOptions={{
+      headerTintColor: '#000',
+      headerBackVisible: true,
+    }} >
+      <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+      <Stack.Screen name="OrderConfirmation" component={OrderConfirmation} options={{ headerShown: false }} />
+      <Stack.Screen name="CardDetails" component={CardDetails} options={{ title: 'Оплата', }} />
+      <Stack.Screen name="PaymentResult" component={PaymentResult} options={{ title: 'Оплата', }} />
+    </Stack.Navigator>
+  );
+}
+
 function MoreStackNavigator() {
   return (
     <Stack.Navigator initialRouteName="MoreScreen" screenOptions={({ route }) => ({
@@ -75,29 +103,6 @@ function MoreStackNavigator() {
       <Stack.Screen name="Support" component={Support} options={{ title: 'Служба поддержки' }} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ title: 'Политика конфиденциальности', }} />
       <Stack.Screen name="ConnectToPortal" component={ConnectToPortal} options={{ title: 'Подключиться к порталу' }} />
-    </Stack.Navigator>
-  );
-}
-
-function FavoriteStackNavigator() {
-  return (
-    <Stack.Navigator initialRouteName="MoreScreen" screenOptions={({ route }) => ({
-      headerBackTitleVisible: false,
-      headerTintColor: '#000',
-      headerBackVisible: true,
-      headerShown: route.name !== 'Другое',
-    })}>
-      <Stack.Screen name="Favorite" component={Favorite} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  );
-}
-
-function CartStackNavigator() {
-  return (
-    <Stack.Navigator initialRouteName="CardDetails" >
-      <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
-      <Stack.Screen name="OrderConfirmation" component={OrderConfirmation} options={{ headerShown: false }} />
-      <Stack.Screen name="CardDetails" component={CardDetails} options={{ title: 'Оплата', }} />
     </Stack.Navigator>
   );
 }

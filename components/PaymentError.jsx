@@ -1,28 +1,27 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { SCREEN_WIDTH } from '../constants'
-import ok_empty from "../assets/icons/ok_empty.png"
+import warning from "../assets/icons/warning.png"
 import { ConfirmButton } from './ConfirmButton'
 import { useNavigation } from '@react-navigation/native'
+import { CancelButton } from './CancelButton'
 
-export default function SuccessfulPayment() {
+export default function PaymentError() {
 
     const navigation = useNavigation()
   return (
       <View style={styles.container}>
-          <Image style={styles.icon} source={ok_empty}/>
+          <Image style={styles.icon} source={warning}/>
           <Text style={styles.title} >
-          Платеж принят!
+          Платеж не прошел
           </Text>
           <View style={styles.row}>
           <Text style={styles.text} >
-          Чек отправлен на Ваш email: &nbsp;
-          </Text>
-          <Text style={styles.boldText} >
-email@example.com
+          Пожалуйста проверьте лимит на Вашей карте, либо попробуйте воспроизвести оплату снова.
           </Text>
           </View>
-          <ConfirmButton text={"Вернуться на главную"} onPress={() => navigation.navigate("Home")}/>
+          <ConfirmButton text={"Попробовать снова"} onPress={() => navigation.goBack()} />
+          <CancelButton text={"Вернуться на главную"} onPress={() => navigation.navigate("Home")}/>
     </View>
   )
 }

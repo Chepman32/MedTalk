@@ -12,7 +12,7 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 import { InputContainer } from './InputContainer';
 import { ConfirmButton } from './ConfirmButton';
 import CardExpirationInput from './CardExpirationInput';
-import SuccessfulPayment from './SuccessfulPayment';
+import { useNavigation } from '@react-navigation/native';
 
 export const CardDetails = () => {
   const [cardNum, setCardNum] = useState('');
@@ -39,12 +39,55 @@ export const CardDetails = () => {
     if (!isValid) {
       Alert.alert('Ошибка', 'Некорректный номер карты');
     }
+    else {
+        navigation.navigate("PaymentResult", {isSuccess: CVV === 111})
+      }
   };
+    
+  const navigation = useNavigation()
 
   return (
     <ScrollView bounces={false}>
       <SafeAreaView style={styles.container}>
-        <SuccessfulPayment/>
+        <Text style={styles.title}>
+          Оплата банковской картой
+        </Text>
+        <InputContainer
+          text="Номер карты"
+          value={cardNum}
+          setValue={setCardNum}
+          isRequired
+          placeholder={"0000 0000 0000 0000"}
+              />
+        <View style={styles.row}>
+          <InputContainer
+            text="Срок годности"
+            value={expiration}
+            setValue={setExpiration}
+                      placeholder={"00 / 00"}
+                      type={"expirationDate"}
+            style={{ width: SCREEN_WIDTH * 0.4 }}
+          />
+          <InputContainer
+            text="CVV"
+            value={CVV}
+            setValue={setCVV}
+            placeholder={"000"}
+            style={{ width: SCREEN_WIDTH * 0.4 }}
+          />
+        </View>
+        <TouchableOpacity
+          disabled={isButtonDisabled}
+          style={[styles.button, isButtonDisabled && styles.disabledButton]}
+          onPress={handlePress}
+        >
+          <Text style={styles.buttonText}>Отправить заявку</Text>
+        </TouchableOpacity>
+        {!isValidCard && (
+          <Text style={styles.errorText}>
+            Некорректные данные
+          </Text>
+        )}
       </SafeAreaView>
     </ScrollView>
   );
