@@ -44,7 +44,7 @@ export const data = [
 export const Doctors = () => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const [modal, setModal] = useState(true)
+    const [modal, setModal] = useState(false)
 
     return (
         <SafeAreaView style={styles.container}>

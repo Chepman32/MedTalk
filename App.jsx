@@ -37,7 +37,7 @@ const Tab = createBottomTabNavigator();
 
 function HomeStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Doctors" screenOptions={{
+    <Stack.Navigator initialRouteName="Home" screenOptions={{
       headerBackTitleVisible: false,
       headerTintColor: '#000',
       headerBackVisible: true,

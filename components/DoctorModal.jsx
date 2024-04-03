@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     width: SCREEN_WIDTH,
-      height: SCREEN_HEIGHT * 0.7,
+      height: SCREEN_HEIGHT * 0.67,
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 8,

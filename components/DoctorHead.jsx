@@ -5,18 +5,8 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import { SCREEN_WIDTH } from '../constants';
 import Fav from "../assets/icons/Frame_658375.png";
 import NotFav from "../assets/icons/favorite.png";
-import MockImage from "../assets/images/lab1.png"
 import star from "../assets/icons/star.png"
 import empty_star from "../assets/icons/empty_star.png"
-import time from "../assets/icons/Frame_658501.png"
-import phone from "../assets/icons/Frame_658502.png"
-import geo from "../assets/icons/Frame_658503.png"
-import price from "../assets/icons/price.png"
-import preview1 from "../assets/images/lab2.png"
-import preview2 from "../assets/images/lab3.png"
-import preview3 from "../assets/images/lab4.png"
-import preview4 from "../assets/images/lab5.png"
-import preview5 from "../assets/images/lab6.jpeg"
 import docImage from "../assets/images/image_151.png"
 
 
@@ -54,10 +44,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: SCREEN_WIDTH * 0.04,
     marginBottom: 15,
     backgroundColor: 'rgba(255, 255, 255, 1)',
-    overflow: 'hidden',
-    borderRadius: 8,
-        borderWidth: 1,
-    borderColor: "rgba(219, 219, 219, 1)",
     shadowOpacity: 0.05,
     shadowRadius: 16,
     elevation: 6,
@@ -68,9 +54,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
   },
   title: {
-    fontSize: 14,
-    lineHeight: 17,
-    fontWeight: "600",
+    fontSize: SCREEN_WIDTH * 0.05,
+    lineHeight: SCREEN_WIDTH * 0.06,
+    fontWeight: "500",
     },
     row: {
         flexDirection: "row",
@@ -83,25 +69,13 @@ const styles = StyleSheet.create({
     text: {
         maxWidth: SCREEN_WIDTH * 0.8,
     fontWeight: '400',
-    fontSize: 12,
-    lineHeight: 15,
+    fontSize: SCREEN_WIDTH * 0.04,
+    lineHeight: SCREEN_WIDTH * 0.05,
     color: 'rgba(21, 21, 21, 1)',
   },
     icon: {
         width: 20,
         height: 20,
         marginTop: SCREEN_WIDTH * 0.03,
-  },
-  previews: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-},
-  preview: {
-    width: SCREEN_WIDTH * 0.12,
-    height: SCREEN_WIDTH * 0.12,
-    marginTop: SCREEN_WIDTH * 0.03,
-    borderRadius: SCREEN_WIDTH * 0.015,
   },
 });
