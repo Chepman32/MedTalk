@@ -31,6 +31,8 @@ import { LabDetails } from './screens/LabDetails';
 import { CardDetails } from './components/CardDetails';
 import PaymentResult from './screens/PaymentResult';
 import { Doctors } from './screens/Doctors';
+import { HomeVisits } from './screens/HomeVisits';
+import { HomeVisitDetails } from './screens/HomeVisitDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -49,6 +51,8 @@ function HomeStackNavigator() {
       <Stack.Screen name="Labs" component={Labs} options={{ title: 'Лаборатории', }} />
       <Stack.Screen name="LabDetails" component={LabDetails} options={{ title: 'Лаборатории', }} />
       <Stack.Screen name="Doctors" component={Doctors} options={{ title: 'Врачи', }} />
+      <Stack.Screen name="HomeVisits" component={HomeVisits} options={{ title: 'Выезд на дом', }} />
+      <Stack.Screen name="HomeVisitDetails" component={HomeVisitDetails} options={{ title: 'Выезд на дом', }} />
       <Stack.Screen name="InsuranceCatalog" component={InsuranceCatalog} options={{ title: 'Медицинское страхование', }} />
       <Stack.Screen name="InsuranceDetails" component={InsuranceDetails} options={{ title: 'Медицинское страхование',  }} />
       <Stack.Screen name="PasswordRecover" component={PasswordRecover} options={{ title: 'Восстановление пароля' }} />
