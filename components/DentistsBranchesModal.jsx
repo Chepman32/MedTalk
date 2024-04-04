@@ -8,9 +8,9 @@ import { useNavigation } from '@react-navigation/native';
 import filter from '../assets/icons/filter.png';
 import { stores } from '../mockData';
 import { PharmacyItem } from './PharmacyItem';
-import { LabsItem } from './LabsItem';
+import { DentistsItem } from './DentistsItem';
 
-export const LabBranchesModal = ({ isModalVisible, hide }) => {
+export const DentistsBranchesModal = ({ isModalVisible, hide }) => {
   return (
     <Modal
       isVisible={isModalVisible}
@@ -27,10 +27,10 @@ export const LabBranchesModal = ({ isModalVisible, hide }) => {
           </TouchableOpacity>
               </View>
               <ScrollView>
-              {
-                      stores.length ? stores.map((s, index) => <LabsItem key={index} />)
-                            : null
-                        }
+                  <DentistsItem />
+                  <DentistsItem />
+                  <DentistsItem />
+                  <DentistsItem/>
               </ScrollView>
       </View>
     </Modal>
@@ -40,7 +40,7 @@ export const LabBranchesModal = ({ isModalVisible, hide }) => {
 const styles = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
-    alignItems: 'center',
+        alignItems: 'center',
     margin: 0
   },
   modalContent: {

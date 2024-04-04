@@ -7,7 +7,7 @@ import image2 from '../assets/images/Insurance/2.png';
 import image3 from '../assets/images/Insurance/im_01.jpg';
 import { PharmacyHead } from '../components/PharmacyHead';
 import { MedicationsItem } from '../components/MedicationsItem';
-import { PharmacyAboutModal } from '../components/PharmacyAboutModal';
+import { AboutModal, PharmacyAboutModal } from '../components/AboutModal';
 import { PharmacyBranchesModal } from '../components/PharmacyBranchesModal';
 import search from '../assets/icons/search.png';
 import { carouselData } from '../mockData';
@@ -59,7 +59,7 @@ export const PharmacyDetails = () => {
       <MedicationsItem showChoosedModal={() => setChoosedModal(true)} />
             <MedicationsItem showChoosedModal={() => setChoosedModal(true)}/>
       </View>
-      <PharmacyAboutModal isModalVisible={aboutModal} hide={() => setAboutModal(false)} />
+      <AboutModal isModalVisible={aboutModal} hide={() => setAboutModal(false)} text={"«Dental Center» – Современное лечение зубов по международным протоколам с применением передового оборудования и импортных материалов.  Персонал Центра не только старается внедрить современные способы исследований и разные новые технологии в медицинскую практику, но и пропагандирует здоровый образ жизни среди пациентов, в также бережное отношение к собственному здоровью и своевременное посещение врачей.  Среди пациентов «Dental Center» – публичные, влиятельные личности, которые беспокоятся об уровне приватности и репутации медицинского заведения.  Персонал «Dental Center» сформирован из квалифицированных специалистов, которые имеют большой опыт в различных медицинских сферах, практику ведения образовательных "} />
       <PharmacyBranchesModal isModalVisible={branchesModal} hide={() => setBranchesModal(false)} />
       <RateUsModal isModalVisible={rateModal} hide={() => setRateModal(false)} />
       <ContactsModal isModalVisible={isContactsModal} hide={() => setIsContactsModal(false)} />

@@ -19,6 +19,7 @@ import { LabHead } from '../components/LabHead';
 import { LabService } from '../components/LabService';
 import { SearchInputContainer } from '../components/SearchInputContainer';
 import { LabBranchesModal } from '../components/LabBranchesModal';
+import { AboutModal } from '../components/AboutModal';
 
 export const LabDetails = () => {
  const [aboutModal, setAboutModal] = useState(false);
@@ -85,7 +86,7 @@ export const LabDetails = () => {
            />
          ))}
        </View>
-       <PharmacyAboutModal isModalVisible={aboutModal} hide={() => setAboutModal(false)} />
+       <AboutModal isModalVisible={aboutModal} hide={() => setAboutModal(false)} />
        <LabBranchesModal isModalVisible={branchesModal} hide={() => setBranchesModal(false)}/>
        <RateUsModal isModalVisible={rateModal} hide={() => setRateModal(false)} />
        <ContactsModal isModalVisible={isContactsModal} hide={() => setIsContactsModal(false)} />

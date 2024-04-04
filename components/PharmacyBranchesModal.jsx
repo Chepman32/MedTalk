@@ -10,7 +10,6 @@ import { stores } from '../mockData';
 import { PharmacyItem } from './PharmacyItem';
 
 export const PharmacyBranchesModal = ({ isModalVisible, hide }) => {
-  const [selected, setSelected] = useState("open")
   return (
     <Modal
       isVisible={isModalVisible}
@@ -47,6 +46,7 @@ const styles = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
     alignItems: 'center',
+    margin: 0
   },
   modalContent: {
     width: SCREEN_WIDTH,

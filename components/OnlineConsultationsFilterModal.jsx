@@ -7,8 +7,8 @@ import close from '../assets/icons/close.png';
 import { useNavigation } from '@react-navigation/native';
 import filter from '../assets/icons/filter.png';
 
-export const MedicationsFilterModal = ({ isModalVisible, hide }) => {
-  const [selected, setSelected] = useState("open")
+export const OnlineConsultationsFilterModal = ({ isModalVisible, hide }) => {
+  const [selected, setSelected] = useState("online")
   return (
     <Modal
       isVisible={isModalVisible}
@@ -26,11 +26,8 @@ export const MedicationsFilterModal = ({ isModalVisible, hide }) => {
           </TouchableOpacity>
         </View>
               <View>
-                  <TouchableOpacity style={selected === "open" ? styles.activeButton : styles.inActiveButton} onPress={() => setSelected("open")}>
-                  <Text style={styles.mainText}>Сейчас открыты</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={selected === "nearby" ? styles.activeButton : styles.inActiveButton} onPress={() => setSelected("nearby")}>
-                  <Text style={styles.mainText}>Рядом</Text>
+              <TouchableOpacity style={selected === "online" ? styles.activeButton : styles.inActiveButton} onPress={() => setSelected("online")}>
+                  <Text style={styles.mainText}>Сейчас онлайн</Text>
               </TouchableOpacity>
               <TouchableOpacity style={selected === "all" ? styles.activeButton : styles.inActiveButton} onPress={() => setSelected("all")}>
                   <Text style={styles.mainText}>Все</Text>

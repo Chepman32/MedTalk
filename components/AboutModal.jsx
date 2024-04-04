@@ -6,11 +6,9 @@ import attention from '../assets/icons/attention.png';
 import close from '../assets/icons/close.png';
 import { useNavigation } from '@react-navigation/native';
 import filter from '../assets/icons/filter.png';
-import { stores } from '../mockData';
-import { PharmacyItem } from './PharmacyItem';
-import { LabsItem } from './LabsItem';
 
-export const LabBranchesModal = ({ isModalVisible, hide }) => {
+export const AboutModal = ({ text, isModalVisible, hide }) => {
+  const [selected, setSelected] = useState("open")
   return (
     <Modal
       isVisible={isModalVisible}
@@ -20,17 +18,16 @@ export const LabBranchesModal = ({ isModalVisible, hide }) => {
       <View style={styles.modalContent}>
         <View style={styles.row}>
                   <View style={{ flexDirection: 'row', alignItems: "center" }}>
-                      <Text style={styles.title}>Наши филиалы</Text>
+                      <Text style={styles.title}>О нас</Text>
           </View>
           <TouchableOpacity onPress={hide}>
             <Image style={styles.closeIcon} source={close} />
           </TouchableOpacity>
               </View>
               <ScrollView>
-              {
-                      stores.length ? stores.map((s, index) => <LabsItem key={index} />)
-                            : null
-                        }
+              <Text style={styles.mainText}>
+              {text}
+        </Text>
               </ScrollView>
       </View>
     </Modal>

@@ -8,23 +8,9 @@ import up from "../assets/icons/up.png"
 
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants';
 
-import select from "../assets/icons/Frame978798987987.png"
+import select from "../assets/icons/control.png"
 
-const options = [
- "Антитела к дц-ДНК",
- "17-ОНКС",
- "a-тромбин III",
- "ANCA",
- "Anti-Jo-1",
- "Anti-Scl-70",
- "C-пептид",
- "CYFRA",
- "d-dimer",
- "HLA – B27",
- "LE- клетки",
-];
-
-export const CustomDropdown = ({ selected, handleSelect }) => {
+export const CustomDropdown = ({ selected, handleSelect, options }) => {
  const [isOpen, setIsOpen] = useState(false);
  const [searchText, setSearchText] = useState('');
  const [filteredOptions, setFilteredOptions] = useState(options);
@@ -42,7 +28,7 @@ export const CustomDropdown = ({ selected, handleSelect }) => {
      option.toLowerCase().includes(searchText.toLowerCase())
    );
    setFilteredOptions(filtered);
- }, [searchText])
+ }, [searchText, options])
 
  const renderItem = ({ item }) => (
    <TouchableOpacity style={styles.option} onPress={() => {
@@ -149,5 +135,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(245, 245, 245, 1)',
     overflow: "hidden",
     borderRadius: SCREEN_HEIGHT * 0.02,
+    color: "rgba(0, 137, 100, 1)"
  },
 });

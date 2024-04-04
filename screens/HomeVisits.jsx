@@ -15,12 +15,13 @@ import car from "../assets/icons/car.png"
 import videoCall from "../assets/icons/videoCall.png"
 import { HomeVisitsItem } from '../components/HomeVisitsItem';
 import { DoctorsItem } from '../components/DoctorsItem';
+import { OnlineConsultationsFilterModal } from '../components/OnlineConsultationsFilterModal';
 
 export const HomeVisits = () => {
     const [searchValue, setSearchValue] = useState('');
     const [activeTab, setActiveTab] = useState('left');
     const [isModalVisible, setModalVisible] = useState(false);
-    const [choosedModal, setChoosedModal] = useState(false);
+    const [consultationsFilterModal, setConsultationsFilterModal] = useState(false);
 
     const filteredData = stores.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase()));
 
@@ -38,7 +39,7 @@ export const HomeVisits = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <TouchableOpacity onPress={() => setConsultationsFilterModal(true)}>
                 <Image source={filter} style={styles.filterIcon} />
             </TouchableOpacity>
             <View style={styles.tabs}>
@@ -65,8 +66,8 @@ export const HomeVisits = () => {
 
             {activeTab === 'left' ? (
                 <ScrollView>
-                    <HomeVisitsItem showChoosedModal={() => setChoosedModal(true)} />
-                    <HomeVisitsItem showChoosedModal={() => setChoosedModal(true)} />
+                    <HomeVisitsItem/>
+                    <HomeVisitsItem/>
                 </ScrollView>
             ) : (
                 <ScrollView>
@@ -76,8 +77,7 @@ export const HomeVisits = () => {
                 </ScrollView>
             )}
             <Image style={styles.banner} source={banner} resizeMode="contain" />
-            <MedicationsFilterModal isModalVisible={isModalVisible} hide={() => setModalVisible(false)} />
-            <ChoosedItemsModal isModalVisible={choosedModal} hide={() => setChoosedModal(false)} />
+            <OnlineConsultationsFilterModal isModalVisible={consultationsFilterModal} hide={() => setConsultationsFilterModal(false)}/>
         </SafeAreaView>
     );
 };
