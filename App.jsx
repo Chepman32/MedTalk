@@ -35,13 +35,15 @@ import { HomeVisitDetails } from './screens/HomeVisitDetails';
 import { Dentists } from './screens/Dentists';
 import { DentistDetails } from './screens/DentistDetails';
 import { LabDetails } from './screens/LabDetails';
+import { Pets } from './screens/Pets';
+import { PetsDetails } from './screens/PetsDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function HomeStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={{
+    <Stack.Navigator initialRouteName="PetsDetails" screenOptions={{
       headerBackTitleVisible: false,
       headerTintColor: '#000',
       headerBackVisible: true,
@@ -57,6 +59,8 @@ function HomeStackNavigator() {
       <Stack.Screen name="HomeVisitDetails" component={HomeVisitDetails} options={{ title: 'Выезд на дом', }} />
       <Stack.Screen name="Dentists" component={Dentists} options={{ title: 'Стоматологии', }} />
       <Stack.Screen name="DentistDetails" component={DentistDetails} options={{ title: 'Стоматологии', }} />
+      <Stack.Screen name="Pets" component={Pets} options={{ title: 'Ветеринарные клиники', }} />
+      <Stack.Screen name="PetsDetails" component={PetsDetails} options={{ title: 'Ветеринарные клиники', }} />
       <Stack.Screen name="InsuranceCatalog" component={InsuranceCatalog} options={{ title: 'Медицинское страхование', }} />
       <Stack.Screen name="InsuranceDetails" component={InsuranceDetails} options={{ title: 'Медицинское страхование',  }} />
       <Stack.Screen name="PasswordRecover" component={PasswordRecover} options={{ title: 'Восстановление пароля' }} />
