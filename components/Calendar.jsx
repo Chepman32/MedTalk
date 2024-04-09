@@ -58,24 +58,35 @@ const Calendar = () => {
     month: 'long',
   });
 
+  const onPanResponderMove = (evt, gestureState) => {
+    if (currentMonth === new Date().getMonth() && gestureState.dx > 0) {
+        return;
+    }
+
+    if (gestureState.dx > 0) {
+        const threshold = SCREEN_WIDTH * 0.3; 
+        if (gestureState.dx > threshold) {
+            const prevMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+            setCurrentMonth(prevMonth);
+        }
+    } else {
+        const threshold = -SCREEN_WIDTH * 0.3; 
+        if (gestureState.dx < threshold) {
+            const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+            setCurrentMonth(nextMonth);
+        }
+    }
+    pan.setValue({ x: gestureState.dx, y: gestureState.dy });
+  };
+
+  const onPanResponderRelease = (evt, gestureState) => {
+    Animated.spring(pan, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
+  };
+
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
-    onPanResponderMove: (evt, gestureState) => {
-        if (currentMonth === new Date().getMonth()) {
-            if (gestureState.dx > 0) {
-                return;
-            }
-        }
-        pan.setValue({ x: gestureState.dx, y: gestureState.dy });
-    },
-    onPanResponderRelease: (evt, gestureState) => {
-        if (gestureState.dx > 50 && currentMonth !== new Date().getMonth()) {
-            goToPreviousMonth();
-        } else if (gestureState.dx < -50) {
-            goToNextMonth();
-        }
-        Animated.spring(pan, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
-    },
+    onPanResponderMove,
+    onPanResponderRelease,
   });
 
   const animatedStyle = {
