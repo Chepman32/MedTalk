@@ -8,12 +8,12 @@ import { useNavigation } from '@react-navigation/native';
 import filter from '../assets/icons/filter.png';
 import { SearchInputContainer } from './SearchInputContainer';
 import { ConfirmButton } from './ConfirmButton';
+import Calendar from './Calendar';
 
 const options = [
     "Диагностика",
 "Хирургия",
 "Ортопедия",
-"О нас",
 "Лаборатория",
 "Стоматология",
 "Вакцинация",
@@ -71,7 +71,7 @@ export const ServicesModal = ({ text, isModalVisible, hide }) => {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <SearchInputContainer searchValue={searchText} setSearchValue={setSearchText} placeholder={"Найти клинику"} containerStyle={{backgroundColor: "rgba(245, 245, 245, 1)"}}/>
+                <SearchInputContainer searchValue={searchText} setSearchValue={setSearchText} placeholder={"Найти клинику"} containerStyle={{backgroundColor: "rgba(245, 245, 245, 1)"}}/>
                     <FlatList
                         data={filteredOptions}
                         renderItem={renderItem}

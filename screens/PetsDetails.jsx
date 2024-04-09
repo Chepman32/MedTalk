@@ -25,6 +25,7 @@ import MockImage from "../assets/images/lab1.png"
 import filter from '../assets/icons/control.png';
 import { PetsBranchesModal } from '../components/PetsBranchesModal';
 import { ServicesModal } from '../components/ServicesModal';
+import { AppointmentModal } from '../components/AppointmentModal';
 
 export const PetsDetails = () => {
   const [aboutModal, setAboutModal] = useState(false);
@@ -34,7 +35,8 @@ export const PetsDetails = () => {
   const [isContactsModal, setIsContactsModal] = useState(false);
   const [rateModal, setRateModal] = useState(false);
     const [modal, setModal] = useState(false)
-    const [servicesModalVisible, setServicesModalVisible] = useState(false);
+  const [servicesModalVisible, setServicesModalVisible] = useState(false);
+  const [appointmentModalVisible, setAppointmentModalVisible] = useState(false);
 
   return (
     <ScrollView>
@@ -73,7 +75,8 @@ export const PetsDetails = () => {
       <ContactsModal isModalVisible={isContactsModal} hide={() => setIsContactsModal(false)} />
               <ScheduleModal isModalVisible={scheduleModal} hide={() => setScheduleModal(false)} />
               <ServicesModal isModalVisible={servicesModalVisible} hide={() => setServicesModalVisible(false)} />
-              <DoctorModal isModalVisible={modal} hide={() => setModal(false)} />
+        <DoctorModal isModalVisible={modal} hide={() => setModal(false)} />
+        <AppointmentModal isModalVisible={true} hide={() => setAppointmentModalVisible(false)} />
     </SafeAreaView>
     </ScrollView>
   );

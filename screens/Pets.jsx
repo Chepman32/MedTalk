@@ -16,7 +16,6 @@ import itemImage from "../assets/images/Frame_57916.png"
 import { ServicesModal } from '../components/ServicesModal';
 
 export const Pets = () => {
-    const [isModalVisible, setIsModalVisible] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const [modal, setModal] = useState(false)
 
@@ -41,7 +40,6 @@ export const Pets = () => {
             </View>
             </ScrollView>
             <Image style={styles.banner} source={banner} resizeMode="contain" />
-            <ServicesModal isModalVisible={true} hide={() => setIsModalVisible(false)} />
         </SafeAreaView>
     );
 };
