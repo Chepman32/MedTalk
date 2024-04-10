@@ -26,7 +26,10 @@ const TimeSlots = () => {
       ]}
       onPress={() => handleSlotPress(index)}
     >
-      <Text style={styles.time}>{item.start} - {item.end}</Text>
+      <Text style={[
+        styles.time,
+        selectedSlot === index ? styles.selectedText : null,
+      ]}>{item.start} - {item.end}</Text>
     </TouchableOpacity>
   );
 
@@ -42,15 +45,6 @@ const TimeSlots = () => {
         activeSlideAlignment="center"
         inactiveSlideScale={1} // Remove parallax effect
         inactiveSlideOpacity={1} // Remove parallax effect
-      />
-      <Pagination
-        dotsLength={timeSlots.length}
-        activeDotIndex={activeSlide}
-        containerStyle={styles.paginationContainer}
-        dotStyle={styles.paginationDot}
-        inactiveDotStyle={styles.paginationInactiveDot}
-        inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
       />
     </View>
   );
@@ -83,20 +77,12 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: 'bold',
       color: '#333',
-    },
-    paginationContainer: {
-      paddingVertical: 8,
-    },
-    paginationDot: {
-      width: 10,
-      height: 10,
-      borderRadius: 5,
-      marginHorizontal: 8,
-      backgroundColor: '#333',
-    },
-    paginationInactiveDot: {
-      backgroundColor: '#ccc',
-    },
+  },
+  selectedText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
   });
 
 export default TimeSlots;

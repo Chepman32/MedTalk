@@ -9,7 +9,7 @@ import filter from '../assets/icons/filter.png';
 import { DoctorHead } from './DoctorHead';
 import { ConfirmButton } from './ConfirmButton';
 
-export const DoctorModal = ({ isModalVisible, hide }) => {
+export const DoctorModal = ({ isModalVisible, onPress, hide }) => {
   const [selected, setSelected] = useState("open")
   return (
     <Modal
@@ -57,7 +57,7 @@ export const DoctorModal = ({ isModalVisible, hide }) => {
               <Text style={styles.mainText}>
               5 000 ₸
               </Text>
-              <ConfirmButton text={"Записаться"} onPress={hide}/>
+              <ConfirmButton text={"Записаться"} onPress={onPress}/>
       </View>
     </Modal>
   );

@@ -75,8 +75,11 @@ export const PetsDetails = () => {
       <ContactsModal isModalVisible={isContactsModal} hide={() => setIsContactsModal(false)} />
               <ScheduleModal isModalVisible={scheduleModal} hide={() => setScheduleModal(false)} />
               <ServicesModal isModalVisible={servicesModalVisible} hide={() => setServicesModalVisible(false)} />
-        <DoctorModal isModalVisible={modal} hide={() => setModal(false)} />
-        <AppointmentModal isModalVisible={true} hide={() => setAppointmentModalVisible(false)} />
+        <DoctorModal isModalVisible={modal} hide={() => setModal(false)} onPress={() => {
+          setModal(false)
+          setAppointmentModalVisible(true)
+        }} />
+        <AppointmentModal isModalVisible={appointmentModalVisible} hide={() => setAppointmentModalVisible(false)} />
     </SafeAreaView>
     </ScrollView>
   );
